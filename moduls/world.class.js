@@ -18,9 +18,15 @@ class World {
     
     draw() {
         let self = this;
-        this.ctx.drawImage(this.character.img, 0, 0, 100, 100);
+
+        this.addToMap(this.character);
+        
         requestAnimationFrame(function () {
             self.draw();
         })
     };
+
+    addToMap(mo) {
+        mo.draw(this.ctx);
+    }
 }
