@@ -1,7 +1,7 @@
 class World {
     canvas;
     ctx;
-
+    keyboard;
     character = new Character();
     enemies = [new Fish(1),
     new Fish(2),
@@ -11,9 +11,10 @@ class World {
     ];
     backgroundObjects = new BackgroundObject;
 
-    constructor(canvas) {
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
         this.setWorld();
 
