@@ -3,13 +3,13 @@ class World {
     ctx;
 
     character = new Character();
-    enemies = [new Fish(),
-    new Fish(),
-    new Fish(),
-    new Fish(),
-    new Fish()
-    ]
-
+    enemies = [new Fish(1),
+    new Fish(2),
+    new Fish(1),
+    new Fish(2),
+    new Fish(1)
+    ];
+    backgroundObjects = new BackgroundObject;
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -26,6 +26,7 @@ class World {
     draw() {
         let self = this;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.addToMap(this.backgroundObjects);
         this.addToMap(this.character);
         this.addObjectToMap(this.enemies);
 
