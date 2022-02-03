@@ -1,6 +1,6 @@
 class Character extends MovableObject {
     world;
-    x = 0;
+    x = 50;
     y = 140;
     width = 150;
     height = 150; s
@@ -16,13 +16,13 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT) {
                 this.swimRight();
             }
-            if (this.world.keyboard.LEFT) {
+            if (this.world.keyboard.LEFT && this.x > 0) {
                 this.swimLeft();
             }
-            if (this.world.keyboard.UP) {
+            if (this.world.keyboard.UP && this.y > -50) {
                 this.swimUp();
             }
-            if (this.world.keyboard.DOWN) {
+            if (this.world.keyboard.DOWN && this.y < 350) {
                 this.swimDown();
             }
             console.log(this.world.keyboard)
