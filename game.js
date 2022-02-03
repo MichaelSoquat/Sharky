@@ -1,14 +1,15 @@
 let canvas;
-let world;
 let keyboard;
+let world;
+
 function init() {
     canvas = document.getElementById('canvas');
-    keyboard = new Keyboard();
+    keyboard = new Keyboard; 
     world = new World(canvas, keyboard);
+
 }
 
 document.addEventListener('keydown', (e) => {
-    console.log(e.keyCode);
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
