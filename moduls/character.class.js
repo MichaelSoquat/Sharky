@@ -25,6 +25,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.DOWN && this.y < 350) {
                 this.swimDown();
             }
+            this.world.positionCamera_X = -this.x;
             console.log(this.world.keyboard)
         }, 1000 / 60);
     }

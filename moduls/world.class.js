@@ -2,6 +2,7 @@ class World {
     canvas;
     ctx;
     keyboard;
+    positionCamera_X = 0;
     character = new Character();
     enemies = [new Fish(1),
     new Fish(2),
@@ -27,9 +28,12 @@ class World {
     draw() {
         let self = this;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.ctx.translate(this.positionCamera_X, 0);
         this.addToMap(this.backgroundObjects);
-        this.addToMap(this.character);
         this.addObjectToMap(this.enemies);
+        this.addToMap(this.character);
+        this.ctx.translate(-this.positionCamera_X, 0);
 
         requestAnimationFrame(function () {
             self.draw();
