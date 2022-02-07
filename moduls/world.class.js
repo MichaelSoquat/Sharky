@@ -58,6 +58,29 @@ class World {
         new Coin(),
     ];
 
+    poison = [
+        new Poison(1),
+        new Poison(2),
+        new Poison(3),
+        new Poison(4),
+        new Poison(1),
+        new Poison(2),
+        new Poison(3),
+        new Poison(4),
+        new Poison(1),
+        new Poison(2),
+        new Poison(3),
+        new Poison(4),
+        new Poison(1),
+        new Poison(2),
+        new Poison(3),
+        new Poison(4),
+        new Poison(1),
+        new Poison(2),
+        new Poison(3),
+        new Poison(4)
+    ];
+
     energybars = [
         new EnergyBar(1),
         new EnergyBar(2),
@@ -105,6 +128,7 @@ class World {
         this.ctx.translate(this.positionCamera_X, 0);
         this.addObjectToMap(this.backgroundObjects);
         this.addObjectToMap(this.coins);
+        this.addObjectToMap(this.poison);
         this.ctx.translate(-this.positionCamera_X, 0);
 
         this.addObjectToMap(this.energybars);
