@@ -13,3 +13,4 @@ class BackgroundObject extends MovableObject {
         this.width = 720;
     }
 }
+

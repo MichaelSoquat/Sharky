@@ -45,14 +45,39 @@ class World {
         new BackgroundObject(2, canvas.width * 5, 0)
     ];
 
+    energybars = [
+        new EnergyBar(1),
+        new EnergyBar(2),
+        new EnergyBar(3)
+    ]
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.draw();
         this.keyboard = keyboard;
         this.setWorld();
-        
+        this.run();
 
+
+    };
+
+    run() {
+        setInterval(() => {
+
+            this.checkCollisions();
+            // this.checkThrowObjects();
+        }, 1000 / 60);
+
+    }
+
+    checkCollisions() {
+        this.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                world.character.energy -= 10;
+                console.log(world.character.energy);
+            }
+        })
     };
 
     setWorld() {
@@ -67,6 +92,7 @@ class World {
         this.ctx.translate(this.positionCamera_X, 0);
 
         this.addObjectToMap(this.backgroundObjects);
+        this.addObjectToMap(this.energybars);
         this.addObjectToMap(this.enemies);
         this.addToMap(this.character);
         this.addToMap(this.endboss);
@@ -111,5 +137,5 @@ class World {
         this.ctx.restore();
     };
 
-    
+
 }

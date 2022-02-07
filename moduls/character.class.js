@@ -2,6 +2,7 @@ class Character extends MovableObject {
     world;
     x = 0;
     y = 150;
+    energy = 100;
     width = 150;
     height = 150;
 
@@ -53,6 +54,13 @@ class Character extends MovableObject {
         }, 100);
     }
 
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+    };
+    
     swimRight() {
         this.x += this.speed;
     }
