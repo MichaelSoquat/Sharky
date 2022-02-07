@@ -45,6 +45,19 @@ class World {
         new BackgroundObject(2, canvas.width * 5, 0)
     ];
 
+    coins = [
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+    ];
+
     energybars = [
         new EnergyBar(1),
         new EnergyBar(2),
@@ -90,9 +103,14 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.positionCamera_X, 0);
-
         this.addObjectToMap(this.backgroundObjects);
+        this.addObjectToMap(this.coins);
+        this.ctx.translate(-this.positionCamera_X, 0);
+
         this.addObjectToMap(this.energybars);
+        this.ctx.translate(this.positionCamera_X, 0);
+        
+        
         this.addObjectToMap(this.enemies);
         this.addToMap(this.character);
         this.addToMap(this.endboss);

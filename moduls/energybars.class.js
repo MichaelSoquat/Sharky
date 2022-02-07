@@ -14,7 +14,7 @@ class EnergyBar extends MovableObject {
             this.loadImage('img/4. Marcadores/Purple/0_.png');
             this.y = 100;
         }
-        this.x = -80;
+        this.x = 15;
         this.height = 60;
         this.width = 250;
         
