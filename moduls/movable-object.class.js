@@ -4,10 +4,12 @@ class MovableObject extends DrawableObject {
     width = 100;
     height = 100;
     energy = 100;
+    speedX = 0;
     coins = 0;
     poison = 0;
     speed = 10;
     otherDirection = false;
+
 
     swimLeft() {
         this.x -= this.speed;
@@ -49,8 +51,9 @@ class MovableObject extends DrawableObject {
 
     hit() {
         this.energy -= 0.5;
+        setTimeout(this.hit, 500);
         if (this.energy < 1) {
-            this.energy = 0; 
+            this.energy = 0;
         }
     };
 }

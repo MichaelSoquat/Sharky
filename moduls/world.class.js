@@ -3,6 +3,8 @@ class World {
     ctx;
     keyboard;
     positionCamera_X = 0;
+    bubbleThrowTime = 0;
+    throwableObject = [];
     character = new Character();
     endboss = new Endboss();
     enemies =
@@ -102,9 +104,20 @@ class World {
         setInterval(() => {
 
             this.checkCollisions();
-            // this.checkThrowObjects();
+            this.checkThrowObjects();
         }, 1000 / 60);
 
+    }
+
+    checkThrowObjects() {
+        if (this.keyboard.D) {
+            let timePassed = new Date().getTime() - this.bubbleThrowTime;
+            if (timePassed > 1000) {
+                let bubble = new ThrowableObject(this.character.x + 100, this.character.y + 50);
+                this.throwableObject.push(bubble);
+                this.bubbleThrowTime = new Date().getTime();
+            }
+        }
     }
 
     checkCollisions() {
@@ -154,6 +167,7 @@ class World {
         this.addObjectToMap(this.enemies);
         this.addToMap(this.character);
         this.addToMap(this.endboss);
+        this.addObjectToMap(this.throwableObject);
 
 
         this.ctx.translate(-this.positionCamera_X, 0);
