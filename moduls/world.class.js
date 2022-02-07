@@ -110,8 +110,23 @@ class World {
     checkCollisions() {
         this.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                world.character.energy -= 10;
+                this.character.hit();
                 console.log(world.character.energy);
+            }
+        });
+        this.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                this.character.collectCoins();
+                this.energybars[1].setPercentage(this.character.coins);
+                this.coins.splice(this.coins.indexOf(coin), 1);
+            }
+        })
+
+        this.poison.forEach((poison) => {
+            if (this.character.isColliding(poison)) {
+                this.character.collectPoisons();
+                this.energybars[2].setPercentage1(this.character.poison);
+                this.poison.splice(this.poison.indexOf(poison), 1);
             }
         })
     };
@@ -133,8 +148,8 @@ class World {
 
         this.addObjectToMap(this.energybars);
         this.ctx.translate(this.positionCamera_X, 0);
-        
-        
+
+
         this.addObjectToMap(this.enemies);
         this.addToMap(this.character);
         this.addToMap(this.endboss);

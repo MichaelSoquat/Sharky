@@ -3,6 +3,9 @@ class MovableObject extends DrawableObject {
     y;
     width = 100;
     height = 100;
+    energy = 100;
+    coins = 0;
+    poison = 0;
     speed = 10;
     otherDirection = false;
 
@@ -22,4 +25,36 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
 
     }
+
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+    };
+
+    collectCoins() {
+        this.coins += 10;
+        if (this.coins > 100) {
+            this.coins = 100;
+        }
+    }
+
+    collectPoisons() {
+        this.poison += 5;
+        if (this.poison > 100) {
+            this.poison = 100;
+        }
+    }
+
+    hit() {
+        this.energy -= 2;
+        if (this.energy <= 0) {
+            this.energy = 0;
+            this.dead = true;
+        }
+        else {
+            this.lastHit = new Date().getTime();
+        }
+    };
 }

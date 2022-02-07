@@ -2,7 +2,6 @@ class Character extends MovableObject {
     world;
     x = 0;
     y = 150;
-    energy = 100;
     width = 150;
     height = 150;
 
@@ -60,7 +59,7 @@ class Character extends MovableObject {
             this.x < mo.x &&
             this.y < mo.y + mo.height;
     };
-    
+
     swimRight() {
         this.x += this.speed;
     }
