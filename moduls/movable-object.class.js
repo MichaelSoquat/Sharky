@@ -48,13 +48,9 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 2;
-        if (this.energy <= 0) {
-            this.energy = 0;
-            this.dead = true;
-        }
-        else {
-            this.lastHit = new Date().getTime();
+        this.energy -= 0.5;
+        if (this.energy < 1) {
+            this.energy = 0; 
         }
     };
 }
