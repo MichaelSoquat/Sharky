@@ -102,7 +102,6 @@ class World {
 
     run() {
         setInterval(() => {
-
             this.checkCollisions();
             this.checkThrowObjects();
         }, 1000 / 60);
@@ -143,6 +142,11 @@ class World {
                 this.poison.splice(this.poison.indexOf(poison), 1);
             }
         })
+        // this.enemies.forEach((enemy) => {
+        //     if (this.throwableObject[0].isColliding(enemy)) {
+        //         console.log('yeah');
+        //     }
+        // });
     };
 
     setWorld() {
