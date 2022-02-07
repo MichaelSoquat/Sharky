@@ -30,7 +30,7 @@ class Poison extends MovableObject {
 
     setPositionOfPoisonLight(){
         return this.x = 200 + Math.random() * 3200,
-            this.y = 200 + Math.random() * 100,
+            this.y = 100 + Math.random() * 200,
             this.width = 50,
             this.height = 50;
     };
