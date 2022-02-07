@@ -19,11 +19,13 @@ class Character extends MovableObject {
         super().loadImage('../img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_SWIMMING);
         this.animate();
+        
     }
 
 
     animate() {
         setInterval(() => {
+            
             if (this.world.keyboard.RIGHT && this.x < 3500) {
                 this.otherDirection = false;
 

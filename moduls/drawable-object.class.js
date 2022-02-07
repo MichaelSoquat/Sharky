@@ -16,7 +16,7 @@ class DrawableObject {
             let img = new Image();
             img.src = path;
             this.imageCache[path] = img;
-            console.log(this.imageCache);
+        
         });
 }
 }
