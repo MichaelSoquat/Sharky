@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     speedX = 0;
     coins = 0;
+    lastHit = 0;
     poison = 0;
     speed = 10;
     otherDirection = false;
@@ -54,6 +55,14 @@ class MovableObject extends DrawableObject {
         setTimeout(this.hit, 500);
         if (this.energy < 1) {
             this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
     };
+
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 1000;
+        return timePassed < 0.5;
+    }
 }

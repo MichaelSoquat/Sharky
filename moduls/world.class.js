@@ -117,7 +117,6 @@ class World {
                 this.throwableObject.push(this.bubble);
                 this.bubbleThrowTime = new Date().getTime();
             }
-
             setInterval(() => {
                 this.enemies.forEach((enemy) => {
                     if (this.bubble.isColliding(enemy)) {
@@ -125,9 +124,7 @@ class World {
                         this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
                         this.bubble.y = -100;
                     };
-
                 });
-
             }, 1000 / 60);
         }
     }

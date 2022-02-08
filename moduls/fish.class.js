@@ -42,6 +42,11 @@ class Fish extends MovableObject {
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 4.png'
     ];
 
+    IMAGES_DEAD_FISH1 = [
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png',
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going down to the floor after the Fin Slap attack).png',
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 3 (can animate by going down to the floor after the Fin Slap attack).png'
+    ];
 
 
 
@@ -52,6 +57,7 @@ class Fish extends MovableObject {
         this.loadImages(this.IMAGES_SWIMMING_FISH3);
         this.loadImages(this.IMAGES_SWIMMING_FISH4);
         this.loadImages(this.IMAGES_SWIMMING_FISH5);
+        this.loadImages(this.IMAGES_DEAD_FISH1);
 
         if (variantsOfFishes == 1) {
             this.loadImage('../img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
@@ -67,7 +73,7 @@ class Fish extends MovableObject {
             this.speed = 0.2 + Math.random() * 2;
             this.y = 0 + Math.random() * 400;
             this.animate1(2);
-            
+
 
         }
 
@@ -77,7 +83,7 @@ class Fish extends MovableObject {
             this.speed = 0.2 + Math.random() * 3;
             this.y = 0 + Math.random() * 400;
             this.animate1(3);
-            
+
 
         } else {
             if (variantsOfFishes == 4) {
@@ -85,7 +91,7 @@ class Fish extends MovableObject {
                 this.speed = 0.02 + Math.random() * 0.5;
                 this.y = 350;
                 this.animate2(4);
-                
+
             }
 
             if (variantsOfFishes == 5) {
@@ -93,7 +99,7 @@ class Fish extends MovableObject {
                 this.speed = 0.02 + Math.random() * 0.5;
                 this.y = 350;
                 this.animate2(5);
-                
+
             }
         }
         this.x = 300 + Math.random() * 4000;
@@ -134,6 +140,6 @@ class Fish extends MovableObject {
             if (i == 5) {
                 this.playAnimation(this.IMAGES_SWIMMING_FISH5);
             }
-        },250);
+        }, 250);
     }
 }
