@@ -2,6 +2,7 @@ class World {
     canvas;
     ctx;
     keyboard;
+    bubble;
     positionCamera_X = 0;
     bubbleThrowTime = 0;
     throwableObject = [];
@@ -112,10 +113,22 @@ class World {
         if (this.keyboard.D) {
             let timePassed = new Date().getTime() - this.bubbleThrowTime;
             if (timePassed > 1000) {
-                let bubble = new ThrowableObject(this.character.x + 100, this.character.y + 50);
-                this.throwableObject.push(bubble);
+                this.bubble = new ThrowableObject(this.character.x + 100, this.character.y + 50);
+                this.throwableObject.push(this.bubble);
                 this.bubbleThrowTime = new Date().getTime();
             }
+
+            setInterval(() => {
+                this.enemies.forEach((enemy) => {
+                    if (this.bubble.isColliding(enemy)) {
+                        this.enemies.splice(this.enemies.indexOf(enemy), 1);
+                        this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
+                        this.bubble.y = -100;
+                    };
+
+                });
+
+            }, 1000 / 60);
         }
     }
 
@@ -142,11 +155,7 @@ class World {
                 this.poison.splice(this.poison.indexOf(poison), 1);
             }
         })
-        // this.enemies.forEach((enemy) => {
-        //     if (this.throwableObject[0].isColliding(enemy)) {
-        //         console.log('yeah');
-        //     }
-        // });
+
     };
 
     setWorld() {
