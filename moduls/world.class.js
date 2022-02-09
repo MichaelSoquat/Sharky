@@ -133,7 +133,6 @@ class World {
         this.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                console.log(this.character.energy);
                 this.energybars[0].setPercentage2(this.character.energy);
             }
         });
