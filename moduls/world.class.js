@@ -8,6 +8,7 @@ class World {
     throwableObject = [];
     character = new Character();
     endboss = new Endboss();
+    energybarEndboss = new EnergybarEndboss();
     enemies =
         [new Fish(1),
         new Fish(2),
@@ -88,7 +89,9 @@ class World {
         new EnergyBar(1),
         new EnergyBar(2),
         new EnergyBar(3)
-    ]
+    ];
+
+    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -176,6 +179,7 @@ class World {
         this.addObjectToMap(this.enemies);
         this.addToMap(this.character);
         this.addToMap(this.endboss);
+        this.addToMap(this.energybarEndboss);
         this.addObjectToMap(this.throwableObject);
 
 

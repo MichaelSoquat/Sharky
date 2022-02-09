@@ -26,6 +26,8 @@ class EnergyBar extends DrawableObject {
         'img/4. Marcadores/Purple/100_.png'
     ];
 
+
+
     percentage = 0;
     poisonPercentage = 0;
     lifePercentage = 100;
@@ -37,17 +39,22 @@ class EnergyBar extends DrawableObject {
             this.loadImage('img/4. Marcadores/Purple/100_ .png');
             this.loadImages(this.LIFE_IMAGES);
             this.y = 0;
+            
         }
         if (index == 2) {
             this.loadImage('img/4. Marcadores/Purple/0_ _1.png');
             this.loadImages(this.COIN_IMAGES);
             this.y = 50;
+            
         }
         if (index == 3) {
             this.loadImage('img/4. Marcadores/Purple/0_.png');
             this.loadImages(this.POISON_IMAGES);
             this.y = 100;
+            
         }
+
+
         this.x = 15;
         this.height = 60;
         this.width = 250;
