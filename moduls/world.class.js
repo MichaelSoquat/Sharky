@@ -136,6 +136,8 @@ class World {
             setInterval(() => {
                 if (this.endboss.isColliding(this.bubble)) {
                     this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
+                    this.bubble.y = -100;
+                    this.endboss.bossEnergy -=20;
                     this.endboss.hitBoss();
                     this.energybarEndboss.setPercentage(this.endboss.bossEnergy);
                 };
@@ -154,7 +156,7 @@ class World {
         this.throwableObjectPoison.forEach((poisonObject) => {
             if (this.character.isColliding(poisonObject)) {
                 this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poisonObject), 1);
-                // this.character.energy -= 10; 
+                this.character.energy -= 10;
                 this.character.hit();
                 this.energybars[0].setPercentage2(this.character.energy);
             };

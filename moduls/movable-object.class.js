@@ -8,6 +8,7 @@ class MovableObject extends DrawableObject {
     speedX = 0;
     coins = 0;
     lastHit = 0;
+    lastHitBoss = 0;
     poison = 0;
     speed = 10;
     otherDirection = false;
@@ -61,14 +62,23 @@ class MovableObject extends DrawableObject {
     };
 
     hitBoss() {
-        this.bossEnergy -= 0.06;
+        this.bossEnergy -= -0.3;
         if (this.bossEnergy < 1) {
             this.bossEnergy = 0;
+        }
+        else {
+            this.lastHitBoss = new Date().getTime();
         }
     };
 
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 1000;
+        return timePassed < 0.5;
+    }
+
+    bossIsHurt() {
+        let timePassed = new Date().getTime() - this.lastHitBoss;
         timePassed = timePassed / 1000;
         return timePassed < 0.5;
     }
