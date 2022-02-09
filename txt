@@ -1,0 +1,11 @@
+Improvements:
+
+- boss life bar
+- boss lose life
+- can throw potion on boss with space-key
+- boss images hurt
+- boss images dead
+- boss shooting mini fishes or smth.
+- start screen 
+- end screen
+- audio
