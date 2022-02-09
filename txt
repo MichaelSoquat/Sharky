@@ -1,6 +1,6 @@
 Improvements:
 
-- boss life bar
+- boss life bar                                 ---
 - boss lose life
 - can throw potion on boss with space-key
 - boss images hurt

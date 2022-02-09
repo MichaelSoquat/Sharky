@@ -3,9 +3,12 @@ class World {
     ctx;
     keyboard;
     bubble;
+    poisonObject;
     positionCamera_X = 0;
     bubbleThrowTime = 0;
+    poisonThrowTime = 0;
     throwableObject = [];
+    throwableObjectPoison = [];
     character = new Character();
     endboss = new Endboss();
     energybarEndboss = new EnergybarEndboss();
@@ -91,7 +94,7 @@ class World {
         new EnergyBar(3)
     ];
 
-    
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -108,6 +111,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            this.checkThrowObjectsPoison();
         }, 1000 / 60);
 
     }
@@ -128,6 +132,23 @@ class World {
                         this.bubble.y = -100;
                     };
                 });
+            }, 1000 / 60);
+        }
+    }
+
+    checkThrowObjectsPoison() {
+        if (this.keyboard.SPACE) {
+            let timePassed = new Date().getTime() - this.poisonThrowTime;
+            if (timePassed > 1000) {
+                this.poisonObject = new ThrowableObjectPoison(this.endboss.x - 100, this.endboss.y + 50);
+                this.throwableObjectPoison.push(this.poisonObject);
+                this.poisonThrowTime = new Date().getTime();
+            }
+            setInterval(() => {
+                if (this.poisonObject.isColliding(this.character)) {
+                    this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poisonObject), 1);
+                    this.poisonObject.y = -100;
+                };
             }, 1000 / 60);
         }
     }
@@ -181,6 +202,7 @@ class World {
         this.addToMap(this.endboss);
         this.addToMap(this.energybarEndboss);
         this.addObjectToMap(this.throwableObject);
+        this.addObjectToMap(this.throwableObjectPoison);
 
 
         this.ctx.translate(-this.positionCamera_X, 0);
