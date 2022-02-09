@@ -133,24 +133,32 @@ class World {
                     };
                 });
             }, 1000 / 60);
-        }
+            setInterval(() => {
+                if (this.endboss.isColliding(this.bubble)) {
+                    this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
+                    this.endboss.hitBoss();
+                    this.energybarEndboss.setPercentage(this.endboss.bossEnergy);
+                };
+            }, 1000 / 60);
+        };
     }
 
     checkThrowObjectsPoison() {
-        if (this.keyboard.SPACE) {
-            let timePassed = new Date().getTime() - this.poisonThrowTime;
-            if (timePassed > 1000) {
-                this.poisonObject = new ThrowableObjectPoison(this.endboss.x - 100, this.endboss.y + 50);
-                this.throwableObjectPoison.push(this.poisonObject);
-                this.poisonThrowTime = new Date().getTime();
-            }
-            setInterval(() => {
-                if (this.poisonObject.isColliding(this.character)) {
-                    this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poisonObject), 1);
-                    this.poisonObject.y = -100;
-                };
-            }, 1000 / 60);
+
+        let timePassed = new Date().getTime() - this.poisonThrowTime;
+        if (timePassed > 1000 + Math.random() * 5000 && this.endboss.endbossInWater) {
+            this.poisonObject = new ThrowableObjectPoison(this.endboss.x, this.endboss.y + 120 + Math.random() * 100);
+            this.throwableObjectPoison.push(this.poisonObject);
+            this.poisonThrowTime = new Date().getTime();
         }
+        this.throwableObjectPoison.forEach((poisonObject) => {
+            if (this.character.isColliding(poisonObject)) {
+                this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poisonObject), 1);
+                // this.character.energy -= 10; 
+                this.character.hit();
+                this.energybars[0].setPercentage2(this.character.energy);
+            };
+        });
     }
 
     checkCollisions() {

@@ -52,11 +52,18 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 0.2;
+        this.energy -= 0.3;
         if (this.energy < 1) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+    };
+
+    hitBoss() {
+        this.bossEnergy -= 0.06;
+        if (this.bossEnergy < 1) {
+            this.bossEnergy = 0;
         }
     };
 
