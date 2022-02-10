@@ -12,6 +12,7 @@ class MovableObject extends DrawableObject {
     poison = 0;
     speed = 10;
     otherDirection = false;
+    bossIsDead = false;
 
 
     swimLeft() {
@@ -56,6 +57,7 @@ class MovableObject extends DrawableObject {
         this.energy -= 0.3;
         if (this.energy < 1) {
             this.energy = 0;
+            
         } else {
             this.lastHit = new Date().getTime();
         }
@@ -63,8 +65,10 @@ class MovableObject extends DrawableObject {
 
     hitBoss() {
         this.bossEnergy -= -0.3;
-        if (this.bossEnergy < 1) {
+        if (this.bossEnergy <= 0) {
+            this.bossIsDead = true;
             this.bossEnergy = 0;
+            
         }
         else {
             this.lastHitBoss = new Date().getTime();

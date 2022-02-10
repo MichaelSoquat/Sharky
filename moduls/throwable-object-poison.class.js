@@ -1,4 +1,5 @@
 class ThrowableObjectPoison extends MovableObject {
+    
 
     POISON_IMAGES = [
         'img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png'

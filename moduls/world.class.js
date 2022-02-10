@@ -137,7 +137,7 @@ class World {
                 if (this.endboss.isColliding(this.bubble)) {
                     this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
                     this.bubble.y = -100;
-                    this.endboss.bossEnergy -=20;
+                    this.endboss.bossEnergy -=200;
                     this.endboss.hitBoss();
                     this.energybarEndboss.setPercentage(this.endboss.bossEnergy);
                 };
@@ -148,7 +148,7 @@ class World {
     checkThrowObjectsPoison() {
 
         let timePassed = new Date().getTime() - this.poisonThrowTime;
-        if (timePassed > 1000 + Math.random() * 5000 && this.endboss.endbossInWater) {
+        if (timePassed > 1000 + Math.random() * 5000 && this.endboss.endbossInWater  && !this.endboss.bossIsDead) {
             this.poisonObject = new ThrowableObjectPoison(this.endboss.x, this.endboss.y + 120 + Math.random() * 100);
             this.throwableObjectPoison.push(this.poisonObject);
             this.poisonThrowTime = new Date().getTime();

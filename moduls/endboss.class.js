@@ -1,6 +1,7 @@
 class Endboss extends MovableObject {
     endbossInWater = false;
     world;
+    endbossDeadLast = false;
     IMAGES_ENDBOSS = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
@@ -45,6 +46,8 @@ class Endboss extends MovableObject {
         'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png'
     ];
 
+    IMAGES_DEAD_LAST = ['img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png'];
+
     constructor() {
         super().loadImage('img/2.Enemy/3 Final Enemy/1.Introduce/1.png');
         this.loadImages(this.IMAGES_ENDBOSS);
@@ -57,6 +60,7 @@ class Endboss extends MovableObject {
         this.height = 300;
         this.animateEndboss();
         this.animate();
+        this.playDeadAnimationBoss();
     }
 
     /**
@@ -66,7 +70,7 @@ class Endboss extends MovableObject {
 
     animateEndboss() {
         let refreshInterval = setInterval(() => {
-            if (this.world.character.x > 200) {  //3400
+            if (this.world.character.x > 200 && !this.bossIsDead) {  //3400
                 this.playAnimation(this.IMAGES_ENDBOSS);
                 setTimeout(() => {
                     clearInterval(refreshInterval);
@@ -79,14 +83,31 @@ class Endboss extends MovableObject {
     animate() {
 
         setInterval(() => {
-            if (this.endbossInWater == true) {
+            if (this.endbossInWater == true && !this.bossIsDead) {
                 this.playAnimation(this.IMAGES_IDLE);
             }
-            if (this.endbossInWater && this.bossIsHurt())
-            {
-                this.playAnimation(this.IMAGES_HURT);
+            if (this.endbossInWater && this.bossIsHurt() && !this.bossIsDead) {
+                this.playAnimation(this.IMAGES_HURT)
             }
+            if (this.endbossDeadLast == true) {
+                this.playAnimation(this.IMAGES_DEAD_LAST);
+                this.y -= 10;
+            }
+
         }, 150)
+
     }
 
+    playDeadAnimationBoss() {
+        let clearThat = setInterval(() => {
+            if (this.bossIsDead) {
+                this.playAnimation(this.IMAGES_DEAD);
+                setTimeout(() => {
+                    clearInterval(clearThat)
+                    this.endbossDeadLast = true;
+                }, 500);
+            };
+        }, 100)
+    }
 }
+
