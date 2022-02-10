@@ -98,6 +98,10 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
+            console.log(this.characterIsDead)
+            if (this.characterIsDead) {
+                this.playAnimation(this.IMAGES_DEAD);
+            }
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
 
@@ -105,7 +109,8 @@ class Character extends MovableObject {
             else if ((this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.world.keyboard.UP || this.world.keyboard.DOWN) && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else {
-                this.playAnimation(this.IMAGES_IDLE);
+                if (!this.characterIsDead)
+                    this.playAnimation(this.IMAGES_IDLE);
             }
         }, 100);
     }

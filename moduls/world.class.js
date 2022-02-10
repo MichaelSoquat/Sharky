@@ -11,7 +11,7 @@ class World {
     throwableObjectPoison = [];
     character = new Character();
     endboss = new Endboss();
-    energybarEndboss = new EnergybarEndboss();
+    energybarEndboss = new EnergybarEndboss(this.endboss.x, this.endboss.y, this.world);
     enemies =
         [new Fish(1),
         new Fish(2),
@@ -113,9 +113,8 @@ class World {
             this.checkThrowObjects();
             this.checkThrowObjectsPoison();
         }, 1000 / 60);
-
     }
-
+    
     checkThrowObjects() {
         if (this.keyboard.D) {
             let timePassed = new Date().getTime() - this.bubbleThrowTime;
@@ -148,7 +147,7 @@ class World {
     checkThrowObjectsPoison() {
 
         let timePassed = new Date().getTime() - this.poisonThrowTime;
-        if (timePassed > 1000 + Math.random() * 5000 && this.endboss.endbossInWater  && !this.endboss.bossIsDead) {
+        if (timePassed > 1000 + Math.random() * 5000 && this.endboss.endbossInWater && !this.endboss.bossIsDead) {
             this.poisonObject = new ThrowableObjectPoison(this.endboss.x, this.endboss.y + 120 + Math.random() * 100);
             this.throwableObjectPoison.push(this.poisonObject);
             this.poisonThrowTime = new Date().getTime();

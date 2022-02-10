@@ -1,5 +1,7 @@
 class EnergybarEndboss extends DrawableObject {
 
+    y;
+    world;
     percentage = 0;
     lifePercentage = 100;
     ENDBOSS_LIFE_IMAGES = [
@@ -11,14 +13,28 @@ class EnergybarEndboss extends DrawableObject {
         'img/4. Marcadores/orange/0_  copia.png'
     ];
 
-    constructor() {
+    constructor(x, y, world) {
         super().loadImage('img/4. Marcadores/orange/100_  copia.png');
         this.loadImages(this.ENDBOSS_LIFE_IMAGES);
-        this.y = 100;
-        this.x = 300;
+        this.y = y - 50;
+        this.x = x;
         this.width = 250;
         this.height = 30;
+        this.checkEnergybar();
+        this.world = world;
     }
+
+    checkEnergybar() {
+        setInterval(() => {
+            console.log(world.endboss.endbossInWater)
+
+            if (world.endboss.endbossInWater) {
+                this.y = world.endboss.y + 30;
+            }
+        }
+        ), 100
+    }
+
     setPercentage(percentage) {
         this.lifePercentage = percentage;
         let path = this.ENDBOSS_LIFE_IMAGES[this.resolveImageIndex()];
