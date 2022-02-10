@@ -61,10 +61,11 @@ class Fish extends MovableObject {
 
         if (variantsOfFishes == 1) {
             this.loadImage('../img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
-
             this.speed = 0.2 + Math.random() * 4;
             this.y = 0 + Math.random() * 400;
+
             this.animate1(1);
+
         }
 
         if (variantsOfFishes == 2) {
@@ -110,10 +111,11 @@ class Fish extends MovableObject {
             if (i == 1) {
                 this.playAnimation(this.IMAGES_SWIMMING_FISH1);
             }
-            if (i == 2) {
+
+            if (i == 2 && !this.isColliding) {
                 this.playAnimation(this.IMAGES_SWIMMING_FISH2);
             }
-            if (i == 3) {
+            if (i == 3 && !this.isColliding) {
                 this.playAnimation(this.IMAGES_SWIMMING_FISH3);
             }
 
@@ -142,4 +144,15 @@ class Fish extends MovableObject {
             }
         }, 250);
     }
+    // animationIfDead() {
+    //     setInterval(() => {
+
+    //         this.playAnimation(this.IMAGES_DEAD_FISH1);
+    //         this.x -= 20;
+
+    //     }, 100)
+    //     console.log('good');
+
+
+    // }
 }

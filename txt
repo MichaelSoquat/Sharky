@@ -5,8 +5,8 @@ Improvements:
 - boss can attack                               ---
 - boss images hurt                              ---                    
 - boss images dead                              --- 
-- life bar boss when in water   
-- enemies images dead                      
+- life bar boss when in water                   ---
+- enemies images dead                           
 - character colliding fix
 - start screen 
 - end screen

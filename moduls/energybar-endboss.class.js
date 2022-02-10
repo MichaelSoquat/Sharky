@@ -26,7 +26,7 @@ class EnergybarEndboss extends DrawableObject {
 
     checkEnergybar() {
         setInterval(() => {
-            console.log(world.endboss.endbossInWater)
+            
 
             if (world.endboss.endbossInWater) {
                 this.y = world.endboss.y + 30;

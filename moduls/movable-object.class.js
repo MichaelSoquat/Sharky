@@ -14,6 +14,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     bossIsDead = false;
     characterIsDead = false;
+    
 
 
     swimLeft() {
