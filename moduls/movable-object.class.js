@@ -14,6 +14,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     bossIsDead = false;
     characterIsDead = false;
+    fishID;
     
 
 
@@ -56,7 +57,7 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 0.3;
+        this.energy -= 2;
         if (this.energy < 1) {
             this.energy = 0;
             this.characterIsDead = true;
@@ -87,5 +88,10 @@ class MovableObject extends DrawableObject {
         let timePassed = new Date().getTime() - this.lastHitBoss;
         timePassed = timePassed / 1000;
         return timePassed < 0.5;
+    }
+
+    isDead() {
+        return this.energy == 0;
+
     }
 }

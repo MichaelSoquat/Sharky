@@ -3,7 +3,6 @@ class World {
     ctx;
     keyboard;
     bubble;
-    enemy;
     poisonObject;
     positionCamera_X = 0;
     bubbleThrowTime = 0;
@@ -14,33 +13,31 @@ class World {
     endboss = new Endboss();
     energybarEndboss = new EnergybarEndboss(this.endboss.x, this.endboss.y, this.world);
     enemies =
-        [new Fish(1),
+        [new Fish(1, this),
+        new Fish(1),
+        new Fish(1),
+        new Fish(1),
+        new Fish(1),
         new Fish(2),
+        new Fish(2),
+        new Fish(2),
+        new Fish(2),
+        new Fish(2),
+        new Fish(3),
+        new Fish(3),
+        new Fish(3),
+        new Fish(3),
         new Fish(3),
         new Fish(4),
-        new Fish(1),
-        new Fish(2),
-        new Fish(3),
-        new Fish(1),
-        new Fish(2),
-        new Fish(3),
-        new Fish(5),
-        new Fish(1),
-        new Fish(2),
+        new Fish(4),
+        new Fish(4),
+        new Fish(4),
         new Fish(4),
         new Fish(5),
-        new Fish(3),
-        new Fish(4),
-        new Fish(1),
-        new Fish(2),
-        new Fish(3),
-        new Fish(1),
-        new Fish(2),
         new Fish(5),
-        new Fish(1),
-        new Fish(2),
-        new Fish(3),
-        new Fish(4)
+        new Fish(5),
+        new Fish(5),
+        new Fish(5)
 
         ];
     backgroundObjects = [
@@ -115,7 +112,7 @@ class World {
             this.checkThrowObjectsPoison();
         }, 1000 / 60);
     }
-
+    
     checkThrowObjects() {
         if (this.keyboard.D) {
             let timePassed = new Date().getTime() - this.bubbleThrowTime;
@@ -124,24 +121,21 @@ class World {
                 this.throwableObject.push(this.bubble);
                 this.bubbleThrowTime = new Date().getTime();
             }
-
-            for (i = 0; i < this.enemies.length; i++) {
-                setInterval(() => {
-                    if (this.bubble.isColliding(this.enemies[i])) {
-                        this.enemy = enemies[i];
-                        // this.enemy.animationIfDead();
+            setInterval(() => {
+                this.enemies.forEach((enemy) => {
+                    if (this.bubble.isColliding(enemy)) {
+                        enemy.hit();
                         // this.enemies.splice(this.enemies.indexOf(enemy), 1);
                         this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
                         this.bubble.y = -100;
-                    }
-                }, 1000 / 60);
-            }
-            
+                    };
+                });
+            }, 1000 / 60);
             setInterval(() => {
                 if (this.endboss.isColliding(this.bubble)) {
                     this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
                     this.bubble.y = -100;
-                    this.endboss.bossEnergy -= 200;
+                    this.endboss.bossEnergy -=200;
                     this.endboss.hitBoss();
                     this.energybarEndboss.setPercentage(this.endboss.bossEnergy);
                 };
@@ -195,7 +189,7 @@ class World {
     setWorld() {
         this.character.world = this;
         this.endboss.world = this;
-        this.enemies.world = this;
+        // this.enemies.world = this;
     };
 
     draw() {
@@ -258,6 +252,5 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     };
-
 
 }

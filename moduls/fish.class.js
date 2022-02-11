@@ -1,5 +1,7 @@
 class Fish extends MovableObject {
-
+    world;
+    energy = 2;
+    intervalOfEnemies;
     IMAGES_SWIMMING_FISH1 = [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png',
@@ -47,17 +49,37 @@ class Fish extends MovableObject {
         'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going down to the floor after the Fin Slap attack).png',
         'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 3 (can animate by going down to the floor after the Fin Slap attack).png'
     ];
+    IMAGES_DEAD_FISH2 = [
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.2.png',
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.3.png',
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.png'
+
+
+    ];
+    IMAGES_DEAD_FISH3 = [
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.2.png',
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.3.png',
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png'
+
+    ];
 
 
 
-    constructor(variantsOfFishes) {
+    constructor(variantsOfFishes, world) {
         super();
+        this.world = world;
+
         this.loadImages(this.IMAGES_SWIMMING_FISH1);
         this.loadImages(this.IMAGES_SWIMMING_FISH2);
         this.loadImages(this.IMAGES_SWIMMING_FISH3);
         this.loadImages(this.IMAGES_SWIMMING_FISH4);
         this.loadImages(this.IMAGES_SWIMMING_FISH5);
         this.loadImages(this.IMAGES_DEAD_FISH1);
+        this.loadImages(this.IMAGES_DEAD_FISH2);
+        this.loadImages(this.IMAGES_DEAD_FISH3);
+
+
+
 
         if (variantsOfFishes == 1) {
             this.loadImage('../img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
@@ -87,6 +109,7 @@ class Fish extends MovableObject {
 
 
         } else {
+
             if (variantsOfFishes == 4) {
                 this.loadImage('../img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png');
                 this.speed = 0.02 + Math.random() * 0.5;
@@ -104,27 +127,40 @@ class Fish extends MovableObject {
             }
         }
         this.x = 300 + Math.random() * 4000;
+
+
     }
 
+
     animate1(i) {
-        setInterval(() => {
-            if (i == 1) {
-                this.playAnimation(this.IMAGES_SWIMMING_FISH1);
+        
+       this.intervalOfEnemies = setInterval(() => {
+            this.animateFish1(i);
+
+            if (this.isDead() && i == 2) {
+                this.playAnimation(this.IMAGES_DEAD_FISH);
+                this.y -= 10;
+            } else if (!this.isDead() && i == 2) {
+                this.playAnimation(this.IMAGES_SWIMMING_FISH2);
+                this.swimLeft();
+            }
+            if (this.isDead() && i == 3) {
+                this.playAnimation(this.IMAGES_DEAD_FISH3);
+                this.y -= 10;
+            } else if (!this.isDead() && i == 3) {
+                this.playAnimation(this.IMAGES_SWIMMING_FISH3);
+                this.swimLeft();
             }
 
-            if (i == 2 && !this.isColliding) {
-                this.playAnimation(this.IMAGES_SWIMMING_FISH2);
-            }
-            if (i == 3 && !this.isColliding) {
-                this.playAnimation(this.IMAGES_SWIMMING_FISH3);
-            }
+
+
 
 
             this.swimLeft();
 
 
 
-        }, 1000 / 60);
+        }, 50);
 
 
     }
@@ -144,15 +180,17 @@ class Fish extends MovableObject {
             }
         }, 250);
     }
-    // animationIfDead() {
-    //     setInterval(() => {
 
-    //         this.playAnimation(this.IMAGES_DEAD_FISH1);
-    //         this.x -= 20;
-
-    //     }, 100)
-    //     console.log('good');
-
-
-    // }
+    animateFish1 (i) {
+        if (this.isDead() && i == 1) {
+            setTimeout(() => {
+                clearInterval(this.intervalOfEnemies)
+            }, 100);
+            this.playAnimation(this.IMAGES_DEAD_FISH1);
+            this.y -= 10;
+        } else if (!this.isDead() && i == 1) {
+            this.playAnimation(this.IMAGES_SWIMMING_FISH1);
+            this.swimLeft();
+        }
+    }
 }

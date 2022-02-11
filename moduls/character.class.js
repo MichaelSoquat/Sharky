@@ -73,8 +73,9 @@ class Character extends MovableObject {
 
 
     movement() {
+        
         setInterval(() => {
-
+        
             if (this.world.keyboard.RIGHT && this.x < 3500) {
                 this.otherDirection = false;
 

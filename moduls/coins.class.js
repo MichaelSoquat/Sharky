@@ -1,4 +1,5 @@
 class Coin extends MovableObject {
+    world;
     COINS_IMAGES = ['img/4. Marcadores/1. Coins/1.png',
         'img/4. Marcadores/1. Coins/2.png',
         'img/4. Marcadores/1. Coins/3.png',
