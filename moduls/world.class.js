@@ -164,7 +164,6 @@ class World {
         this.throwableObjectPoison.forEach((poisonObject) => {
             if (this.character.isColliding(poisonObject)) {
                 this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poisonObject), 1);
-                this.character.energy -= 10;
                 this.character.hit();
                 this.energybarCharacter.setPercentage(this.character.energy);
             };
