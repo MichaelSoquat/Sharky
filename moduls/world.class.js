@@ -12,32 +12,31 @@ class World {
     character = new Character();
     endboss = new Endboss();
     energybarEndboss = new EnergybarEndboss(this.endboss.x, this.endboss.y, this.world);
+
+    // CREATE!!!
+
     enemies =
-        [new Fish(1, this),
-        new Fish(1),
-        new Fish(1),
-        new Fish(1),
-        new Fish(1),
-        new Fish(2),
-        new Fish(2),
-        new Fish(2),
-        new Fish(2),
-        new Fish(2),
-        new Fish(3),
-        new Fish(3),
-        new Fish(3),
-        new Fish(3),
-        new Fish(3),
-        new Fish(4),
-        new Fish(4),
-        new Fish(4),
-        new Fish(4),
-        new Fish(4),
-        new Fish(5),
-        new Fish(5),
-        new Fish(5),
-        new Fish(5),
-        new Fish(5)
+        [
+            new FishGreen(),
+            new FishGreen(),
+            new FishGreen(),
+            new FishGreen(),
+            new FishOrange(),
+            new FishOrange(),
+            new FishOrange(),
+            new FishOrange(),
+            new FishPurple(),
+            new FishPurple(),
+            new FishPurple(),
+            new FishPurple(),
+            new FishJellyGreen(),
+            new FishJellyGreen(),
+            new FishJellyGreen(),
+            new FishJellyGreen(),
+            new FishJellyPurple(),
+            new FishJellyPurple(),
+            new FishJellyPurple(),
+            new FishJellyPurple()
 
         ];
     backgroundObjects = [
@@ -92,7 +91,7 @@ class World {
         new EnergyBar(3)
     ];
 
-
+    // CREATE END
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -105,6 +104,11 @@ class World {
 
     };
 
+ 
+    /**
+     * This function is used to check the collisions and prove it every 60fps
+     */
+
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -112,7 +116,11 @@ class World {
             this.checkThrowObjectsPoison();
         }, 1000 / 60);
     }
-    
+
+     /**
+     * This function is for checking the throwable objects
+     */
+
     checkThrowObjects() {
         if (this.keyboard.D) {
             let timePassed = new Date().getTime() - this.bubbleThrowTime;
@@ -135,7 +143,7 @@ class World {
                 if (this.endboss.isColliding(this.bubble)) {
                     this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
                     this.bubble.y = -100;
-                    this.endboss.bossEnergy -=200;
+                    this.endboss.bossEnergy -= 200;
                     this.endboss.hitBoss();
                     this.energybarEndboss.setPercentage(this.endboss.bossEnergy);
                 };
@@ -143,6 +151,9 @@ class World {
         };
     }
 
+    /**
+     * This function is for checking a collision of the poison throwable object of endboss
+     */
     checkThrowObjectsPoison() {
 
         let timePassed = new Date().getTime() - this.poisonThrowTime;
@@ -160,6 +171,10 @@ class World {
             };
         });
     }
+
+        /**
+         * This function is used for checking the collision of character with enemy/coin/poison
+         */
 
     checkCollisions() {
         this.enemies.forEach((enemy) => {
@@ -186,11 +201,19 @@ class World {
 
     };
 
+    /**
+     * This function is for setting the world to character and endboss
+     */
+
     setWorld() {
         this.character.world = this;
         this.endboss.world = this;
         // this.enemies.world = this;
     };
+
+    /**
+     * Drawing function
+     */
 
     draw() {
         let self = this;
@@ -201,7 +224,7 @@ class World {
         this.addObjectToMap(this.coins);
         this.addObjectToMap(this.poison);
         this.ctx.translate(-this.positionCamera_X, 0);
-
+        //space for static Objects!!!
         this.addObjectToMap(this.energybars);
         this.ctx.translate(this.positionCamera_X, 0);
 
@@ -222,6 +245,10 @@ class World {
     };
 
 
+    /**
+     * Drawing function splitted. This is for more Objects.
+     * @param {string} enemies 
+     */
 
     addObjectToMap(enemies) {
         enemies.forEach(fish => {
@@ -229,18 +256,26 @@ class World {
         })
     };
 
+    /**
+     * Drawing function splitted. This is for 1 Object.
+     * @param {string} mo 
+     */
+
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
     }
 
-    //  Spiegeln
+    /**
+     * This function is for mirror character movement
+     * @param {string} mo 
+     */
+
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -248,6 +283,10 @@ class World {
         mo.x = mo.x * -1;
     };
 
+    /**
+     * Mirror back
+     * @param {moveableObject} mo 
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

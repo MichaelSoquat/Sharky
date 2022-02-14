@@ -15,12 +15,18 @@ class ThrowableObjectPoison extends MovableObject {
         this.animate();
         this.throw();
     }
-
+    /**
+     * This function is for animating poison bubble
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.POISON_IMAGES);
         }, 100)
     }
+
+    /**
+     * This function is for throwing poison bubble
+     */
 
     throw() {
         setInterval(() => {

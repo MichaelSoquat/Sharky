@@ -21,15 +21,18 @@ class ThrowableObject extends MovableObject {
         this.animate();
         this.throw();
     }
-
+    /**
+     * This function is for animating bubble
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.BUBBLE_IMAGES);
         }, 100)
     }
 
-    
-
+    /**
+     * This function is for throwing bubble
+     */
 
     throw() {
         setInterval(() => {

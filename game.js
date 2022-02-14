@@ -2,6 +2,10 @@ let canvas;
 let keyboard;
 let world;
 
+/**
+ * This function is used to create the World
+ * and give canvas and keyboard to world
+ */
 function init() {
     canvas = document.getElementById('canvas');
     keyboard = new Keyboard; 
@@ -9,6 +13,9 @@ function init() {
 
 }
 
+/**
+ * This function is used to create and use the Keyboard
+ */
 document.addEventListener('keydown', (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;

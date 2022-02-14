@@ -34,7 +34,7 @@ class EnergyBar extends DrawableObject {
 
     constructor(index) {
         super();
-        this.setPercentage(0);
+
         if (index == 1) {
             this.loadImage('img/4. Marcadores/Purple/100_ .png');
             this.loadImages(this.LIFE_IMAGES);
@@ -61,7 +61,10 @@ class EnergyBar extends DrawableObject {
 
 
     }
-
+    /**
+     * This function is for setting percentage of coin bar
+     * @param {string} percentage 
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.COIN_IMAGES[this.resolveImageIndex()];
@@ -84,7 +87,10 @@ class EnergyBar extends DrawableObject {
             return 0;
         }
     }
-
+/**
+     * This function is for setting percentage of poison bar
+     * @param {string} percentage 
+     */
     setPercentage1(percentage) {
         this.poisonPercentage = percentage;
         let path = this.POISON_IMAGES[this.resolveImageIndex1()];
@@ -107,7 +113,10 @@ class EnergyBar extends DrawableObject {
             return 0;
         }
     }
-
+/**
+     * This function is for setting percentage of life bar
+     * @param {string} percentage 
+     */
     setPercentage2(percentage) {
         this.lifePercentage = percentage;
         let path = this.LIFE_IMAGES[this.resolveImageIndex2()];
