@@ -10,10 +10,14 @@ class World {
     throwableObject = [];
     throwableObjectPoison = [];
 
-    // CREATE!!!
+
     character = new Character();
     endboss = new Endboss();
     energybarEndboss = new EnergybarEndboss(this.endboss.x, this.endboss.y, this.world);
+    energybarCharacter = new EnergybarCharacter();
+    energybarCoins = new EnergybarCoins();
+    energybarPoison = new EnergybarPoison();
+
 
     enemies =
         [
@@ -37,8 +41,8 @@ class World {
             new FishJellyPurple(),
             new FishJellyPurple(),
             new FishJellyPurple()
-            
-            
+
+
 
         ];
     backgroundObjects = [
@@ -87,12 +91,6 @@ class World {
         new Poison(4)
     ];
 
-    energybars = [
-        new EnergyBar(1),
-        new EnergyBar(2),
-        new EnergyBar(3)
-    ];
-
     // CREATE END
 
     constructor(canvas, keyboard) {
@@ -106,7 +104,7 @@ class World {
 
     };
 
- 
+
     /**
      * This function is used to check the collisions and prove it every 60fps
      */
@@ -119,9 +117,9 @@ class World {
         }, 1000 / 60);
     }
 
-     /**
-     * This function is for checking the throwable objects
-     */
+    /**
+    * This function is for checking the throwable objects
+    */
 
     checkThrowObjects() {
         if (this.keyboard.D) {
@@ -168,26 +166,26 @@ class World {
                 this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poisonObject), 1);
                 this.character.energy -= 10;
                 this.character.hit();
-                this.energybars[0].setPercentage2(this.character.energy);
+                this.energybarCharacter.setPercentage(this.character.energy);
             };
         });
     }
 
-        /**
-         * This function is used for checking the collision of character with enemy/coin/poison
-         */
+    /**
+     * This function is used for checking the collision of character with enemy/coin/poison
+     */
 
     checkCollisions() {
         this.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.energybars[0].setPercentage2(this.character.energy);
+                this.energybarCharacter.setPercentage(this.character.energy);
             }
         });
         this.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 this.character.collectCoins();
-                this.energybars[1].setPercentage(this.character.coins);
+                this.energybarCoins.setPercentage(this.character.coins);
                 this.coins.splice(this.coins.indexOf(coin), 1);
             }
         })
@@ -195,7 +193,7 @@ class World {
         this.poison.forEach((poison) => {
             if (this.character.isColliding(poison)) {
                 this.character.collectPoisons();
-                this.energybars[2].setPercentage1(this.character.poison);
+                this.energybarPoison.setPercentage(this.character.poison);
                 this.poison.splice(this.poison.indexOf(poison), 1);
             }
         })
@@ -226,7 +224,9 @@ class World {
         this.addObjectToMap(this.poison);
         this.ctx.translate(-this.positionCamera_X, 0);
         //space for static Objects!!!
-        this.addObjectToMap(this.energybars);
+        this.addToMap(this.energybarCharacter);
+        this.addToMap(this.energybarCoins);
+        this.addToMap(this.energybarPoison);
         this.ctx.translate(this.positionCamera_X, 0);
 
 

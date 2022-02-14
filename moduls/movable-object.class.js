@@ -54,7 +54,7 @@ class MovableObject extends DrawableObject {
     hit() {
         this.currentImage = 0;
         this.energy -= 10;
-        if (this.energy < 1) {
+        if (this.energy <= 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
@@ -82,13 +82,19 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * This function is for throwing bubble
+     * This function is for throwing bubble or poison
      */
 
-     throw() {
+    throw() {
+
         setInterval(() => {
-            this.x += 5;
+            if (this instanceof ThrowableObject) {
+                this.x += 5;
+            }
+            else {
+                this.x -= 5;
+            }
         }, 25)
-        
+
     }
 }
