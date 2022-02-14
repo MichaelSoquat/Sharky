@@ -30,14 +30,5 @@ class ThrowableObject extends MovableObject {
         }, 100)
     }
 
-    /**
-     * This function is for throwing bubble
-     */
-
-    throw() {
-        setInterval(() => {
-            this.x += 5;
-        }, 25)
-        
-    }
+    
 }

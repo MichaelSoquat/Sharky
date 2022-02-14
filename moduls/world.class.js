@@ -9,11 +9,11 @@ class World {
     poisonThrowTime = 0;
     throwableObject = [];
     throwableObjectPoison = [];
+
+    // CREATE!!!
     character = new Character();
     endboss = new Endboss();
     energybarEndboss = new EnergybarEndboss(this.endboss.x, this.endboss.y, this.world);
-
-    // CREATE!!!
 
     enemies =
         [
@@ -37,6 +37,8 @@ class World {
             new FishJellyPurple(),
             new FishJellyPurple(),
             new FishJellyPurple()
+            
+            
 
         ];
     backgroundObjects = [
@@ -143,9 +145,8 @@ class World {
                 if (this.endboss.isColliding(this.bubble)) {
                     this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
                     this.bubble.y = -100;
-                    this.endboss.bossEnergy -= 200;
-                    this.endboss.hitBoss();
-                    this.energybarEndboss.setPercentage(this.endboss.bossEnergy);
+                    this.endboss.hit();
+                    this.energybarEndboss.setPercentage(this.endboss.energy);
                 };
             }, 1000 / 60);
         };

@@ -1,5 +1,5 @@
 class ThrowableObjectPoison extends MovableObject {
-    
+
 
     POISON_IMAGES = [
         'img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png'
@@ -22,16 +22,5 @@ class ThrowableObjectPoison extends MovableObject {
         setInterval(() => {
             this.playAnimation(this.POISON_IMAGES);
         }, 100)
-    }
-
-    /**
-     * This function is for throwing poison bubble
-     */
-
-    throw() {
-        setInterval(() => {
-            this.x -= 5;
-        }, 25)
-
     }
 }

@@ -8,10 +8,10 @@ class FishJellyGreen extends Fish {
     ];
 
     IMAGES_DEAD_FISH = [
-        'img/2.Enemy/2 Jelly fish/Dead/green/g1.png',
-        'img/2.Enemy/2 Jelly fish/Dead/green/g2.png',
-        'img/2.Enemy/2 Jelly fish/Dead/green/g3.png',
-        'img/2.Enemy/2 Jelly fish/Dead/green/g4.png'
+        './img/2.Enemy/2 Jelly fish/Dead/green/g1.png',
+        './img/2.Enemy/2 Jelly fish/Dead/green/g2.png',
+        './img/2.Enemy/2 Jelly fish/Dead/green/g3.png',
+        './img/2.Enemy/2 Jelly fish/Dead/green/g4.png'
         
     ];
     constructor() {

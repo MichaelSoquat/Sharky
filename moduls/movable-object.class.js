@@ -4,27 +4,26 @@ class MovableObject extends DrawableObject {
     width = 100;
     height = 100;
     energy = 100;
-    bossEnergy = 100;
-    speedX = 0;
-    coins = 0;
     lastHit = 0;
-    lastHitBoss = 0;
-    poison = 0;
-    speed = 10;
+    speed = 8;
     otherDirection = false;
-    bossIsDead = false;
-    characterIsDead = false;
-    fishID;
-    
 
+    //swim Left
 
     swimLeft() {
         this.x -= this.speed;
     }
 
+    //swim Up
+
     swimUp() {
         this.y -= this.speed;
     }
+
+    /**
+     * This function is for animating all with the right pictures of array
+     * @param {string} images 
+     */
 
     playAnimation(images) {
 
@@ -35,6 +34,12 @@ class MovableObject extends DrawableObject {
 
     }
 
+    /**
+     * This function is checking the collision
+     * @param {string} mo 
+     * @returns 
+     */
+
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
@@ -42,41 +47,24 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.height;
     };
 
-    collectCoins() {
-        this.coins += 10;
-        if (this.coins > 100) {
-            this.coins = 100;
-        }
-    }
-
-    collectPoisons() {
-        this.poison += 5;
-        if (this.poison > 100) {
-            this.poison = 100;
-        }
-    }
+    /**
+     * This function is checking if hit and removing energy
+     */
 
     hit() {
-        this.energy -= 2;
+        this.currentImage = 0;
+        this.energy -= 10;
         if (this.energy < 1) {
             this.energy = 0;
-            this.characterIsDead = true;
         } else {
             this.lastHit = new Date().getTime();
         }
     };
 
-    hitBoss() {
-        this.bossEnergy -= -0.3;
-        if (this.bossEnergy <= 0) {
-            this.bossIsDead = true;
-            this.bossEnergy = 0;
-
-        }
-        else {
-            this.lastHitBoss = new Date().getTime();
-        }
-    };
+    /**
+     * This function is checking if hurt within 0.5sec
+     * @returns boolean
+     */
 
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
@@ -84,14 +72,23 @@ class MovableObject extends DrawableObject {
         return timePassed < 0.5;
     }
 
-    bossIsHurt() {
-        let timePassed = new Date().getTime() - this.lastHitBoss;
-        timePassed = timePassed / 1000;
-        return timePassed < 0.5;
-    }
+    /**
+     * This function is checking if dead
+     * @returns boolean
+     */
 
     isDead() {
         return this.energy == 0;
+    }
 
+    /**
+     * This function is for throwing bubble
+     */
+
+     throw() {
+        setInterval(() => {
+            this.x += 5;
+        }, 25)
+        
     }
 }

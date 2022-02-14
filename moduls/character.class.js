@@ -4,8 +4,10 @@ class Character extends MovableObject {
     y = 150;
     width = 150;
     height = 150;
+    poison = 0;
+    coins = 0;
 
-
+    //IMAGES TO LOAD
     IMAGES_IDLE = [
         './img/1.Sharkie/1.IDLE/1.png',
         './img/1.Sharkie/1.IDLE/2.png',
@@ -71,11 +73,14 @@ class Character extends MovableObject {
 
     }
 
+    /**
+     * This function is for moving the character
+     */
 
     movement() {
-        
+
         setInterval(() => {
-        
+
             if (this.world.keyboard.RIGHT && this.x < 3500) {
                 this.otherDirection = false;
 
@@ -97,10 +102,14 @@ class Character extends MovableObject {
         }, 1000 / 60);
     }
 
+    /**
+     * This function is for animate the character if idle/swimming/hurt/dead.
+     */
+
     animate() {
         setInterval(() => {
 
-            if (this.characterIsDead) {
+            if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             }
             if (this.isHurt()) {
@@ -110,24 +119,39 @@ class Character extends MovableObject {
             else if ((this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.world.keyboard.UP || this.world.keyboard.DOWN) && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_SWIMMING);
             } else {
-                if (!this.characterIsDead)
+                if (!this.isDead())
                     this.playAnimation(this.IMAGES_IDLE);
             }
         }, 100);
     }
 
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
-    };
+    //swim speed right
 
     swimRight() {
         this.x += this.speed;
     }
 
+    //swim speed down
+
     swimDown() {
         this.y += this.speed;
+    }
+
+    //collect coins + 10
+
+    collectCoins() {
+        this.coins += 10;
+        if (this.coins > 100) {
+            this.coins = 100;
+        }
+    }
+
+    //collect poison + 10
+
+    collectPoisons() {
+        this.poison += 5;
+        if (this.poison > 100) {
+            this.poison = 100;
+        }
     }
 }
