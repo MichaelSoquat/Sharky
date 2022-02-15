@@ -1,3 +1,5 @@
+// LEVEL 1 
+
 const level1 = new Level(enemies =
     [
         new FishGreen(),

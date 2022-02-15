@@ -37,9 +37,10 @@ class DrawableObject {
     }
 
     /**
-     * This function is for setting percentage of coin bar
+     * This function is for setting percentage of all bars and picking the right display (energybars, coinbar, poisonbar)
      * @param {string} percentage 
      */
+
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];

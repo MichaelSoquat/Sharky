@@ -56,7 +56,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 300;  //3800
+        this.x = 3800;
         this.y = 0;
         this.width = 300;
         this.height = 300;
@@ -72,7 +72,7 @@ class Endboss extends MovableObject {
 
     animateEndboss() {
         let refreshInterval = setInterval(() => {
-            if (this.world.character.x > 200 && !this.isDead()) {  //3400
+            if (this.world.character.x > 3400 && !this.isDead()) {
                 this.playAnimation(this.IMAGES_ENDBOSS);
                 setTimeout(() => {
                     clearInterval(refreshInterval);
