@@ -16,7 +16,7 @@ class Fish extends MovableObject {
             if (this.isDead()) {
                 setTimeout(() => {
                     clearInterval(this.intervalOfEnemies)
-                }, 300);
+                }, 200);
                 this.playAnimation(this.IMAGES_DEAD_FISH);
                 setInterval(() => {
                     this.y -= 2;

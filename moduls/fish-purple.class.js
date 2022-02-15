@@ -9,8 +9,8 @@ class FishPurple extends Fish {
     ];
     IMAGES_DEAD_FISH = [
         './img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png',
-        './img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.2.png',
         './img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.3.png',
+        './img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.2.png',
 
 
     ];
