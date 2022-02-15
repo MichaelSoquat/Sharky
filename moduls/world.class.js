@@ -10,86 +10,13 @@ class World {
     throwableObject = [];
     throwableObjectPoison = [];
 
-
+    level = level1;
     character = new Character();
     endboss = new Endboss();
     energybarEndboss = new EnergybarEndboss(this.endboss.x, this.endboss.y, this.world);
     energybarCharacter = new EnergybarCharacter();
     energybarCoins = new EnergybarCoins();
     energybarPoison = new EnergybarPoison();
-
-
-    enemies =
-        [
-            new FishGreen(),
-            new FishGreen(),
-            new FishGreen(),
-            new FishGreen(),
-            new FishOrange(),
-            new FishOrange(),
-            new FishOrange(),
-            new FishOrange(),
-            new FishPurple(),
-            new FishPurple(),
-            new FishPurple(),
-            new FishPurple(),
-            new FishJellyGreen(),
-            new FishJellyGreen(),
-            new FishJellyGreen(),
-            new FishJellyGreen(),
-            new FishJellyPurple(),
-            new FishJellyPurple(),
-            new FishJellyPurple(),
-            new FishJellyPurple()
-
-
-
-        ];
-    backgroundObjects = [
-        new BackgroundObject(2, -canvas.width, 0),
-        new BackgroundObject(1, 0, 0),
-        new BackgroundObject(2, canvas.width, 0),
-        new BackgroundObject(1, canvas.width * 2, 0),
-        new BackgroundObject(2, canvas.width * 3, 0),
-        new BackgroundObject(1, canvas.width * 4, 0),
-        new BackgroundObject(2, canvas.width * 5, 0)
-    ];
-
-    coins = [
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-    ];
-
-    poison = [
-        new Poison(1),
-        new Poison(2),
-        new Poison(3),
-        new Poison(4),
-        new Poison(1),
-        new Poison(2),
-        new Poison(3),
-        new Poison(4),
-        new Poison(1),
-        new Poison(2),
-        new Poison(3),
-        new Poison(4),
-        new Poison(1),
-        new Poison(2),
-        new Poison(3),
-        new Poison(4),
-        new Poison(1),
-        new Poison(2),
-        new Poison(3),
-        new Poison(4)
-    ];
 
     // CREATE END
 
@@ -130,7 +57,7 @@ class World {
                 this.bubbleThrowTime = new Date().getTime();
             }
             setInterval(() => {
-                this.enemies.forEach((enemy) => {
+                this.level.enemies.forEach((enemy) => {
                     if (this.bubble.isColliding(enemy)) {
                         enemy.hit();
                         // this.enemies.splice(this.enemies.indexOf(enemy), 1);
@@ -175,25 +102,25 @@ class World {
      */
 
     checkCollisions() {
-        this.enemies.forEach((enemy) => {
+        this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.energybarCharacter.setPercentage(this.character.energy);
             }
         });
-        this.coins.forEach((coin) => {
+        this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 this.character.collectCoins();
                 this.energybarCoins.setPercentage(this.character.coins);
-                this.coins.splice(this.coins.indexOf(coin), 1);
+                this.level.coins.splice(this.level.coins.indexOf(coin), 1);
             }
         })
 
-        this.poison.forEach((poison) => {
+        this.level.poison.forEach((poison) => {
             if (this.character.isColliding(poison)) {
                 this.character.collectPoisons();
                 this.energybarPoison.setPercentage(this.character.poison);
-                this.poison.splice(this.poison.indexOf(poison), 1);
+                this.level.poison.splice(this.level.poison.indexOf(poison), 1);
             }
         })
 
@@ -218,9 +145,9 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.positionCamera_X, 0);
-        this.addObjectToMap(this.backgroundObjects);
-        this.addObjectToMap(this.coins);
-        this.addObjectToMap(this.poison);
+        this.addObjectToMap(this.level.backgroundObjects);
+        this.addObjectToMap(this.level.coins);
+        this.addObjectToMap(this.level.poison);
         this.ctx.translate(-this.positionCamera_X, 0);
         //space for static Objects!!!
         this.addToMap(this.energybarCharacter);
@@ -229,7 +156,7 @@ class World {
         this.ctx.translate(this.positionCamera_X, 0);
 
 
-        this.addObjectToMap(this.enemies);
+        this.addObjectToMap(this.level.enemies);
         this.addToMap(this.character);
         this.addToMap(this.endboss);
         this.addToMap(this.energybarEndboss);
