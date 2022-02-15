@@ -141,7 +141,6 @@ class Character extends MovableObject {
 
     collectCoins() {
         this.coins += 10;
-        console.log(this.coins)
         if (this.coins > 100) {
             this.coins = 100;
         }

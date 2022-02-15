@@ -45,8 +45,6 @@ class World {
             this.checkCollectingPoison();
             this.checkThrowObjects();
             this.checkThrowObjectsPoison();
-            this.checkCollisionsEndbossWithBubble();
-            this.checkCollisionsEnemiesWithBubble();
             this.checkCollisionsWithPoison();
         }, 1000 / 60);
     };
@@ -76,6 +74,8 @@ class World {
                 this.throwableObject.push(this.bubble);
                 this.bubbleThrowTime = new Date().getTime();
             }
+            this.checkCollisionsEndbossWithBubble();
+            this.checkCollisionsEnemiesWithBubble();
         };
     };
 
@@ -94,8 +94,7 @@ class World {
                 };
             });
         }, 1000 / 60);
-    };
-
+    }
     /**
      * This function is for checking collisions between endboss with bubble
      */
