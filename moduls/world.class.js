@@ -6,12 +6,12 @@ class World {
 
     //variables
     bubble;
-    poisonObject;
+    bubbleObject;
     positionCamera_X = 0;
     bubbleThrowTime = 0;
     poisonThrowTime = 0;
     throwableObject = [];
-    throwableObjectPoison = [];
+    throwableObjectBubble = [];
 
 
     //generating
@@ -44,7 +44,7 @@ class World {
             this.checkCollectingCoins();
             this.checkCollectingPoison();
             this.checkThrowObjects();
-            this.checkThrowObjectsPoison();
+            this.checkThrowObjectsBubble();
             this.checkCollisionsWithPoison();
         }, 1000 / 60);
     };
@@ -115,9 +115,9 @@ class World {
      */
 
     checkCollisionsWithPoison() {
-        this.throwableObjectPoison.forEach((poisonObject) => {
-            if (this.character.isColliding(poisonObject)) {
-                this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poisonObject), 1);
+        this.throwableObjectBubble.forEach((bubbleObject) => {
+            if (this.character.isColliding(bubbleObject)) {
+                this.throwableObjectBubble.splice(this.throwableObjectBubble.indexOf(this.bubbleObject), 1);
                 this.character.hit();
                 if (this.character.energy > 0) {
                     this.character.energy -= 10;
@@ -128,15 +128,15 @@ class World {
     };
 
     /**
-     * This function is for checking if endboss can throw poison
+     * This function is for checking if endboss can throw bubble
      */
 
-    checkThrowObjectsPoison() {
+    checkThrowObjectsBubble() {
 
         let timePassed = new Date().getTime() - this.poisonThrowTime;
         if (timePassed > 1000 + Math.random() * 5000 && this.endboss.endbossInWater && !this.endboss.isDead()) {
-            this.poisonObject = new ThrowableObjectPoison(this.endboss.x, this.endboss.y + 120 + Math.random() * 100);
-            this.throwableObjectPoison.push(this.poisonObject);
+            this.bubbleObject = new ThrowableObjectBubble(this.endboss.x, this.endboss.y + 120 + Math.random() * 100);
+            this.throwableObjectBubble.push(this.bubbleObject);
             this.poisonThrowTime = new Date().getTime();
         }
     };
@@ -202,7 +202,7 @@ class World {
         this.addToMap(this.endboss);
         this.addToMap(this.energybarEndboss);
         this.addObjectToMap(this.throwableObject);
-        this.addObjectToMap(this.throwableObjectPoison);
+        this.addObjectToMap(this.throwableObjectBubble);
 
 
         this.ctx.translate(-this.positionCamera_X, 0);
