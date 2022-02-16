@@ -6,11 +6,14 @@ class World {
 
     //variables
     bubble;
+    poison;
     bubbleObject;
     positionCamera_X = 0;
     bubbleThrowTime = 0;
     poisonThrowTime = 0;
+    endbossThrowTime = 0;
     throwableObject = [];
+    throwableObjectPoison = [];
     throwableObjectBubble = [];
 
 
@@ -46,6 +49,7 @@ class World {
             this.checkThrowObjects();
             this.checkThrowObjectsBubble();
             this.checkCollisionsWithPoison();
+            this.checkThrowObjectsPoison();
         }, 1000 / 60);
     };
 
@@ -63,6 +67,23 @@ class World {
     };
 
     /**
+    * This function is for checking the throw rate and generating a poison bubble
+    */
+
+    checkThrowObjectsPoison() {
+        if (this.keyboard.SPACE) {
+            let timePassed = new Date().getTime() - this.poisonThrowTime;
+            console.log(this.throwableObjectPoison)
+            if (timePassed > 2000) {
+                this.poison = new ThrowableObjectPoison(this.character.x + 100, this.character.y + 80);
+                this.throwableObjectPoison.push(this.poison);
+                this.poisonThrowTime = new Date().getTime();
+            }
+            this.checkCollisionsEndbossWithPoison();
+        }
+    }
+
+    /**
     * This function is for checking the throw rate and generating a bubble
     */
 
@@ -74,7 +95,6 @@ class World {
                 this.throwableObject.push(this.bubble);
                 this.bubbleThrowTime = new Date().getTime();
             }
-            this.checkCollisionsEndbossWithBubble();
             this.checkCollisionsEnemiesWithBubble();
         };
     };
@@ -96,14 +116,14 @@ class World {
         }, 1000 / 60);
     }
     /**
-     * This function is for checking collisions between endboss with bubble
+     * This function is for checking collisions between endboss with poison
      */
 
-    checkCollisionsEndbossWithBubble() {
+    checkCollisionsEndbossWithPoison() {
         setInterval(() => {
-            if (this.endboss.isColliding(this.bubble)) {
-                this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
-                this.bubble.y = -100;
+            if (this.endboss.isColliding(this.poison)) {
+                this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poison), 1);
+                this.poison.y = -100;
                 this.endboss.hit();
                 this.energybarEndboss.setPercentage(this.endboss.energy);
             };
@@ -133,11 +153,11 @@ class World {
 
     checkThrowObjectsBubble() {
 
-        let timePassed = new Date().getTime() - this.poisonThrowTime;
+        let timePassed = new Date().getTime() - this.endbossThrowTime;
         if (timePassed > 1000 + Math.random() * 5000 && this.endboss.endbossInWater && !this.endboss.isDead()) {
             this.bubbleObject = new ThrowableObjectBubble(this.endboss.x, this.endboss.y + 120 + Math.random() * 100);
             this.throwableObjectBubble.push(this.bubbleObject);
-            this.poisonThrowTime = new Date().getTime();
+            this.endbossThrowTime = new Date().getTime();
         }
     };
 
@@ -203,6 +223,7 @@ class World {
         this.addToMap(this.energybarEndboss);
         this.addObjectToMap(this.throwableObject);
         this.addObjectToMap(this.throwableObjectBubble);
+        this.addObjectToMap(this.throwableObjectPoison);
 
 
         this.ctx.translate(-this.positionCamera_X, 0);

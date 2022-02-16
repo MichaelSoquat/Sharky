@@ -93,7 +93,7 @@ class MovableObject extends DrawableObject {
     throw() {
 
         setInterval(() => {
-            if (this instanceof ThrowableObject) {
+            if (this instanceof ThrowableObject || this instanceof ThrowableObjectPoison) {
                 this.x += 5;
             }
             else {
