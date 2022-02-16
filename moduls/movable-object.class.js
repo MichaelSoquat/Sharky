@@ -35,7 +35,7 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * This function is checking the collision
+     * This function is checking the collision (+40 because of better character collision)
      * @param {string} mo 
      * @returns 
      */
@@ -44,7 +44,7 @@ class MovableObject extends DrawableObject {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&
-            this.y < mo.y + mo.height;
+            this.y + 40 < mo.y + mo.height;
     };
 
     /**
@@ -52,7 +52,7 @@ class MovableObject extends DrawableObject {
      */
 
     hit() {
-        
+
         if (this instanceof Character) {
             this.energy -= 0.2;
         } else {
