@@ -52,10 +52,11 @@ class MovableObject extends DrawableObject {
      */
 
     hit() {
-        this.currentImage = 0;
+        
         if (this instanceof Character) {
             this.energy -= 0.2;
         } else {
+            this.currentImage = 0;
             this.energy -= 10;
         }
         if (this.energy <= 0) {

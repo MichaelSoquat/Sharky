@@ -44,8 +44,7 @@ class Character extends MovableObject {
         './img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
         './img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
         './img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
-        './img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
-        './img/1.Sharkie/3.Swim/1.png'
+        './img/1.Sharkie/5.Hurt/1.Poisoned/4.png'
     ];
 
     IMAGES_DEAD = [
@@ -112,17 +111,22 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             }
-            if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
+            else
+                if (this.isHurt()) {
+                    this.playAnimation(this.IMAGES_HURT);
 
-            }
-            else if ((this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.world.keyboard.UP || this.world.keyboard.DOWN) && !this.isHurt()) {
-                this.playAnimation(this.IMAGES_SWIMMING);
-            } else {
-                if (!this.isDead())
-                    this.playAnimation(this.IMAGES_IDLE);
-            }
-        }, 100);
+                }
+
+                else {
+                    if (this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+                        this.playAnimation(this.IMAGES_SWIMMING);
+
+                    } else {
+                        if (!this.isDead() && !this.isHurt())
+                            this.playAnimation(this.IMAGES_IDLE);
+                    }
+                }
+        }, 75);
     }
 
     //swim speed right

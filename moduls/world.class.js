@@ -69,7 +69,7 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.D) {
             let timePassed = new Date().getTime() - this.bubbleThrowTime;
-            if (timePassed > 1000) {
+            if (timePassed > 2000) {
                 this.bubble = new ThrowableObject(this.character.x + 100, this.character.y + 50);
                 this.throwableObject.push(this.bubble);
                 this.bubbleThrowTime = new Date().getTime();
@@ -119,6 +119,9 @@ class World {
             if (this.character.isColliding(poisonObject)) {
                 this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poisonObject), 1);
                 this.character.hit();
+                if (this.character.energy > 0) {
+                    this.character.energy -= 10;
+                }
                 this.energybarCharacter.setPercentage(this.character.energy);
             };
         });
