@@ -61,6 +61,11 @@ class Character extends MovableObject {
 
     ]
 
+    // SOUNDS
+
+    swim_sound = new Audio('audio/swim.wav');
+    collect_sound = new Audio('audio/collect.wav');
+
     constructor() {
         super().loadImage('./img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);
@@ -120,6 +125,7 @@ class Character extends MovableObject {
                 else {
                     if (this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                         this.playAnimation(this.IMAGES_SWIMMING);
+                        this.swim_sound.play();
 
                     } else {
                         if (!this.isDead() && !this.isHurt())
@@ -144,6 +150,7 @@ class Character extends MovableObject {
     //collect coins + 10
 
     collectCoins() {
+        this.collect_sound.play();
         this.coins += 10;
         if (this.coins > 100) {
             this.coins = 100;

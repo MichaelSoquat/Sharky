@@ -7,7 +7,7 @@ Improvements:
 - boss images dead                              --- 
 - life bar boss when in water                   ---
 - enemies images dead                           ---                       
-- character colliding fix
+- character colliding fix                       ---
 - start screen 
 - end screen
 - audio
