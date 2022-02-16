@@ -19,6 +19,6 @@ class FishGreen extends Fish {
         this.loadImages(this.IMAGES_SWIMMING_FISH);
         this.loadImages(this.IMAGES_DEAD_FISH);
         this.setValueNormalFishes();
-        this.animate();
+        this.animate(1);
     }
 }

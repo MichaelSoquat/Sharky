@@ -4,13 +4,13 @@ class Fish extends MovableObject {
     intervalOfEnemies;
     y = 350;
     x = 300 + Math.random() * 4000;
-    speed = 0.02 + Math.random() * 0.5;
+    speed = 0.1 + Math.random() * 0.5;
 
     /**
      * This funtion is for animating each fish
      */
 
-    animate() {
+    animate(variant) {
 
         this.intervalOfEnemies = setInterval(() => {
             if (this.isDead()) {
@@ -23,10 +23,24 @@ class Fish extends MovableObject {
                 }, 50)
             } else if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_SWIMMING_FISH);
-                this.swimLeft();
+                this.checkFish(variant);
             }
 
         }, 100);
+    }
+
+    /**
+     * This function is checking the fish variant;
+     * Normal fishes swimming left, jelly fishes swimming up;
+     * @param {number} variant 1 is normal fish; variant 2 is jelly fish
+     */
+    
+    checkFish(variant) {
+        if (variant == 2) {
+            this.swimUp();
+        } else {
+            this.swimLeft();
+        }
     }
 
     /**

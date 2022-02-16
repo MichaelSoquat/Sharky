@@ -19,6 +19,6 @@ class FishJellyGreen extends Fish {
         this.loadImage('./img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png');
         this.loadImages(this.IMAGES_SWIMMING_FISH);
         this.loadImages(this.IMAGES_DEAD_FISH);
-        this.animate();
+        this.animate(2);
     }
 }
