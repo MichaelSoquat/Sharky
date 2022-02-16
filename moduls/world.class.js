@@ -72,9 +72,11 @@ class World {
 
     checkThrowObjectsPoison() {
         if (this.keyboard.SPACE) {
+            console.log(this.energybarPoison.percentage)
             let timePassed = new Date().getTime() - this.poisonThrowTime;
-            console.log(this.throwableObjectPoison)
-            if (timePassed > 2000) {
+            if (timePassed > 2000 && this.energybarPoison.percentage >= 10) {
+                this.character.poison -= 10;
+                this.energybarPoison.setPercentage(this.character.poison);
                 this.poison = new ThrowableObjectPoison(this.character.x + 100, this.character.y + 80);
                 this.throwableObjectPoison.push(this.poison);
                 this.poisonThrowTime = new Date().getTime();
