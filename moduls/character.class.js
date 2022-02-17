@@ -6,7 +6,9 @@ class Character extends MovableObject {
     height = 150;
     poison = 0;
     coins = 0;
-
+    animateCharacterInterval;
+    moveCharacterInterval;
+    
     //IMAGES TO LOAD
     IMAGES_IDLE = [
         './img/1.Sharkie/1.IDLE/1.png',
@@ -84,7 +86,7 @@ class Character extends MovableObject {
 
     movement() {
 
-        setInterval(() => {
+        this.moveCharacterInterval = setInterval(() => {
 
             if (this.world.keyboard.RIGHT && this.gameEnd()) {
                 this.otherDirection = false;
@@ -119,7 +121,7 @@ class Character extends MovableObject {
      */
 
      animate() {
-        let animateCharacterInterval =  setInterval(() => {
+       this.animateCharacterInterval =  setInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -127,8 +129,7 @@ class Character extends MovableObject {
                 setTimeout(() => {
                     this.world.gameLost = true;
                     this.world.checkLost();
-                    clearInterval(animateCharacterInterval);
-                }, 2000);
+                }, 1000);
                 
             }
             else

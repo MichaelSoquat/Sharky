@@ -1,5 +1,6 @@
 class Coin extends MovableObject {
     world;
+    animateCoinsInterval;
     COINS_IMAGES = ['./img/4. Marcadores/1. Coins/1.png',
         './img/4. Marcadores/1. Coins/2.png',
         './img/4. Marcadores/1. Coins/3.png',
@@ -18,7 +19,7 @@ class Coin extends MovableObject {
      * This function is for animating the coins
      */
     animate() {
-        setInterval(() => {
+        this.animateCoinsInterval = setInterval(() => {
             this.playAnimation(this.COINS_IMAGES);
         }, 250)
     }

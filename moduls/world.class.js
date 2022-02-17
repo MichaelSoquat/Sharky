@@ -19,7 +19,7 @@ class World {
     gameLost = false;
 
     //audio
-    
+
     deadFish_audio = new Audio('./audio/deadFish.wav');
     endbossHurt_audio = new Audio('./audio/endbossHurt.wav');
     gameLost_audio = new Audio('./audio/gameLost.mp3');
@@ -43,15 +43,31 @@ class World {
         this.setWorld();
         this.run();
     };
-
+    /**
+     * This function is there to check lost Game
+     */
     checkLost() {
-        if(this.gameLost == true) {
-            console.log('lost')
+        if (this.gameLost == true) {
+            this.stopInterval();
             setTimeout(() => {
                 this.gameLost_audio.play();
             }, 200);
-            
+
         }
+    }
+
+    stopInterval() {
+        clearInterval(this.character.animateCharacterInterval);
+        clearInterval(this.character.moveCharacterInterval);
+        this.level.coins.forEach(coin => {
+            clearInterval(coin.animateCoinsInterval)
+        });
+        this.level.enemies.forEach(fish => {
+            clearInterval(fish.intervalOfEnemies)
+        });
+
+
+
     }
 
     /**
