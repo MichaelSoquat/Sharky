@@ -15,7 +15,15 @@ class World {
     throwableObject = [];
     throwableObjectPoison = [];
     throwableObjectBubble = [];
+    gameWon = false;
+    gameLost = false;
 
+    //audio
+    
+    deadFish_audio = new Audio('./audio/deadFish.wav');
+    endbossHurt_audio = new Audio('./audio/endbossHurt.wav');
+    gameLost_audio = new Audio('./audio/gameLost.mp3');
+    gameWon_audio = new Audio('./audio/gameWon.mp3');
 
     //generating
     level = level1;
@@ -36,6 +44,15 @@ class World {
         this.run();
     };
 
+    checkLost() {
+        if(this.gameLost == true) {
+            console.log('lost')
+            setTimeout(() => {
+                this.gameLost_audio.play();
+            }, 200);
+            
+        }
+    }
 
     /**
      * This function is mainly used to check the collisions and prove it every 60fps
@@ -113,6 +130,7 @@ class World {
                     // this.enemies.splice(this.enemies.indexOf(enemy), 1);
                     this.throwableObject.splice(this.throwableObject.indexOf(this.bubble), 1);
                     this.bubble.y = -100;
+                    this.deadFish_audio.play();
                 };
             });
         }, 1000 / 60);
@@ -127,6 +145,7 @@ class World {
                 this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poison), 1);
                 this.poison.y = -100;
                 this.endboss.hit();
+                this.endbossHurt_audio.play();
                 this.energybarEndboss.setPercentage(this.endboss.energy);
             };
         }, 1000 / 60);
@@ -143,6 +162,7 @@ class World {
                 this.character.hit();
                 if (this.character.energy > 0) {
                     this.character.energy -= 10;
+                    this.hurt_audio.play();
                 }
                 this.energybarCharacter.setPercentage(this.character.energy);
             };

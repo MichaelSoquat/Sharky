@@ -50,6 +50,10 @@ class Endboss extends MovableObject {
 
     IMAGES_DEAD_LAST = ['./img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png'];
 
+    //audio
+
+    endbossDead_audio = new Audio('./audio/endbossDead.wav');
+
     constructor() {
         super().loadImage('./img/2.Enemy/3 Final Enemy/1.Introduce/1.png');
         this.loadImages(this.IMAGES_ENDBOSS);
@@ -86,7 +90,7 @@ class Endboss extends MovableObject {
      */
     animate() {
 
-        setInterval(() => {
+        let intervalEndbossDead = setInterval(() => {
 
             if (this.endbossInWater == true && !this.isDead()) {
                 this.playAnimation(this.IMAGES_IDLE);
@@ -96,12 +100,29 @@ class Endboss extends MovableObject {
             }
             if (this.endbossDeadLast == true) {
                 this.playAnimation(this.IMAGES_DEAD_LAST);
+                this.playEndbossDeadAudio(intervalEndbossDead);
+
+
                 this.y -= 10;
             }
 
         }, 150)
 
     }
+
+    /**
+     * Endboss dead with clear interval after 3.5sec
+     * @param {*} intervalEndbossDead 
+     */
+
+    playEndbossDeadAudio(intervalEndbossDead) {
+        this.endbossDead_audio.play();
+        setTimeout(() => {
+            clearInterval(intervalEndbossDead);
+        }, 3500);
+
+    }
+
     /**
      * This function is for animating endboss if dead.
      */

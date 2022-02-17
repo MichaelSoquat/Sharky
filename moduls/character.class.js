@@ -65,7 +65,8 @@ class Character extends MovableObject {
 
     swim_sound = new Audio('audio/swim.wav');
     collect_sound = new Audio('audio/collect.wav');
-
+    characterDead_sound = new Audio('./audio/characterDead.wav');
+    hurt_sound = new Audio('./audio/hurt.wav');
     constructor() {
         super().loadImage('./img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);
@@ -85,7 +86,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
 
-            if (this.world.keyboard.RIGHT && this.x < 3500) {
+            if (this.world.keyboard.RIGHT && this.gameEnd()) {
                 this.otherDirection = false;
 
                 this.swimRight();
@@ -106,20 +107,34 @@ class Character extends MovableObject {
         }, 1000 / 60);
     }
 
+    gameEnd() {
+        if (!this.world.endboss.endbossDeadLast) {
+            return this.x < 3500;
+        } else {
+            return this.x < 4000;
+        }
+    }
     /**
      * This function is for animate the character if idle/swimming/hurt/dead.
      */
 
-    animate() {
-        setInterval(() => {
+     animate() {
+        let animateCharacterInterval =  setInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.characterDead_sound.play();
+                setTimeout(() => {
+                    this.world.gameLost = true;
+                    this.world.checkLost();
+                    clearInterval(animateCharacterInterval);
+                }, 2000);
+                
             }
             else
                 if (this.isHurt()) {
                     this.playAnimation(this.IMAGES_HURT);
-
+                    this.hurt_sound.play();
                 }
 
                 else {
