@@ -1,7 +1,7 @@
 let canvas;
 let keyboard;
 let world;
-
+// let bg_sound = ;
 /**
  * This function is used to create the World
  * and give canvas and keyboard to world
@@ -13,6 +13,22 @@ function init() {
 
 }
 
+// full screen
+
+function fullScreen() {
+    canvas.requestFullscreen();
+}
+
+// start game
+
+function startGame() {
+    canvas = document.getElementById('canvas');
+    let startGame = document.getElementById('startGame');
+    startGame.classList.add('d-none');
+    canvas.classList.remove('d-none');
+    // bg_sound.play();
+    // bg_sound.volume = 0.1;
+}
 /**
  * This function is used to create and use the Keyboard
  */

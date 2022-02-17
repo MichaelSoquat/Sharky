@@ -8,7 +8,7 @@ class Character extends MovableObject {
     coins = 0;
     animateCharacterInterval;
     moveCharacterInterval;
-    
+
     //IMAGES TO LOAD
     IMAGES_IDLE = [
         './img/1.Sharkie/1.IDLE/1.png',
@@ -68,7 +68,7 @@ class Character extends MovableObject {
     swim_sound = new Audio('audio/swim.wav');
     collect_sound = new Audio('audio/collect.wav');
     characterDead_sound = new Audio('./audio/characterDead.wav');
-    hurt_sound = new Audio('./audio/hurt.wav');
+    // hurt_sound = new Audio('./audio/hurt.wav');
     constructor() {
         super().loadImage('./img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.IMAGES_IDLE);
@@ -135,7 +135,7 @@ class Character extends MovableObject {
             else
                 if (this.isHurt()) {
                     this.playAnimation(this.IMAGES_HURT);
-                    this.hurt_sound.play();
+                    // this.hurt_sound.play();
                 }
 
                 else {

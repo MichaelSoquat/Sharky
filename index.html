@@ -40,10 +40,28 @@
 
 <!-- ONLOAD -->
 
-<body onload="init()">
-
-    <h1>Sharky</h1>
-    <canvas id="canvas" width="720" height="480"></canvas>
+<body>
+    
+    <div class="bg-img">
+        <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+        <div id="startGame">
+            <h1>Sharky</h1>
+            <img class="start-button" onclick="startGame(), init()" src="./img/6.Botones/Start/1.png">
+            <div class="center-description-movement">
+                <div class="display-row"><img class="description-movement" src="./img/6.Botones/Key/arrow keys.png">
+                    <img class="size-description" src="./img/6.Botones/Tittles/Move title.png">
+                </div>
+                <div class="display-row"><img class="description-d-button" src="./img/6.Botones/Key/D key.png">
+                    <img class="size-description" src="./img/6.Botones/Tittles/Attack tittle.png">
+                </div>
+                <div class="display-row"><img class="description-space-button"
+                        src="./img/6.Botones/Key/Space Bar key.png">
+                    <img class="size-description" src="./img/6.Botones/Tittles/Attack tittle.png">
+                </div>
+                <p>Only use SPACE BAR for attacking end boss!</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

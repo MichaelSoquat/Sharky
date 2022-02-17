@@ -161,6 +161,7 @@ class World {
                 this.throwableObjectPoison.splice(this.throwableObjectPoison.indexOf(this.poison), 1);
                 this.poison.y = -100;
                 this.endboss.hit();
+                this.endboss.energy -= 10;
                 this.endbossHurt_audio.play();
                 this.energybarEndboss.setPercentage(this.endboss.energy);
             };

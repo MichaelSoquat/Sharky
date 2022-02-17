@@ -8,6 +8,6 @@ Improvements:
 - life bar boss when in water                   ---
 - enemies images dead                           ---                       
 - character colliding fix                       ---
-- start screen 
+- start screen                                  ---
 - end screen
 - audio                                         ---
