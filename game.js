@@ -11,6 +11,14 @@ function init() {
     keyboard = new Keyboard;
     world = new World(canvas, keyboard);
     responsive();
+    canvas.addEventListener("mousedown", doMouseDown, false);
+}
+
+function doMouseDown(event) {
+    canvas_x = event.pageX;
+    canvas_y = event.pageY;
+    canvas.requestFullscreen();
+
 }
 
 //responsive
