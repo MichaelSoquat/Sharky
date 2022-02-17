@@ -51,9 +51,17 @@ class World {
             this.stopInterval();
             setTimeout(() => {
                 this.gameLost_audio.play();
+                this.youLost();
             }, 200);
 
         }
+    }
+    youLost() {
+        document.getElementById('bg-img').classList.add('d-none');
+        document.getElementById('id-gameLost').classList.remove('d-none');
+        setTimeout(() => {
+            location.reload();
+        }, 5000);
     }
 
     stopInterval() {

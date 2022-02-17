@@ -79,6 +79,8 @@ canvas {
 
 #canvasFullscreen {
     position: relative;
+    width: 720px;
+    height: 480px;
 }
 
 .style-fullscreen-img {
@@ -88,6 +90,12 @@ canvas {
     cursor: pointer;
     z-index: 1;
     position: relative;
-    bottom: 10px;
-    right: 40px;
+    bottom: 40px;
+    left: 680px;
+}
+
+.endscreen {
+    display: cover;
+    height: 100vh;
+    width: 100%;
 }

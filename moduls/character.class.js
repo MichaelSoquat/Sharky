@@ -80,6 +80,7 @@ class Character extends MovableObject {
 
     }
 
+
     /**
      * This function is for moving the character
      */
