@@ -8,16 +8,21 @@ let world;
  */
 function init() {
     canvas = document.getElementById('canvas');
-    keyboard = new Keyboard; 
+    keyboard = new Keyboard;
     world = new World(canvas, keyboard);
+    responsive();
+}
 
+//responsive
+
+function responsive() {
+    var heightRatio = 0.65;
+    canvas.height = canvas.width * heightRatio;
 }
 
 // full screen
 
-function fullScreen() {
-    canvas.requestFullscreen();
-}
+
 
 // start game
 

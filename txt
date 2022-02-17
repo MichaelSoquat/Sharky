@@ -9,5 +9,5 @@ Improvements:
 - enemies images dead                           ---                       
 - character colliding fix                       ---
 - start screen                                  ---
-- end screen
+- end screen                                    ---
 - audio                                         ---

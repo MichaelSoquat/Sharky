@@ -9,6 +9,7 @@ body {
 
 canvas {
     background-color: black;
+    width: 100%;
 }
 
 /* DESCRIPTION STYLING */
@@ -83,6 +84,7 @@ canvas {
     position: relative;
     width: 720px;
     height: 480px;
+    
 }
 
 /* fullscreen-img */

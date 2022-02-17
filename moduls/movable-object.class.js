@@ -5,7 +5,7 @@ class MovableObject extends DrawableObject {
     height = 100;
     energy = 100;
     lastHit = 0;
-    speed = 8;
+    speed = 3;
     otherDirection = false;
     
     //swim Left

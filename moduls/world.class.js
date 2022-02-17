@@ -28,6 +28,7 @@ class World {
     //generating
     level = level1;
 
+    fullscreen = new Fullscreen();
     character = new Character();
     endboss = new Endboss();
     energybarEndboss = new EnergybarEndboss(this.endboss.x, this.endboss.y, this.world);
@@ -43,6 +44,7 @@ class World {
         this.setWorld();
         this.run();
     };
+
     /**
      * This function is there to check lost Game
      */
@@ -108,7 +110,7 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && enemy.energy > 0) {
                 this.character.hit();
                 this.energybarCharacter.setPercentage(this.character.energy);
             }
@@ -251,6 +253,7 @@ class World {
     setWorld() {
         this.character.world = this;
         this.endboss.world = this;
+        this.fullscreen.world = this;
     };
 
     /**
@@ -267,6 +270,7 @@ class World {
         this.addObjectToMap(this.level.poison);
         this.ctx.translate(-this.positionCamera_X, 0);
         //space for static Objects!!!
+        this.addToMap(this.fullscreen);
         this.addToMap(this.energybarCharacter);
         this.addToMap(this.energybarCoins);
         this.addToMap(this.energybarPoison);
