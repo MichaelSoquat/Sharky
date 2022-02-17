@@ -77,11 +77,15 @@ canvas {
     justify-content: center;
 }
 
+/* canvas fullscreen */
+
 #canvasFullscreen {
     position: relative;
     width: 720px;
     height: 480px;
 }
+
+/* fullscreen-img */
 
 .style-fullscreen-img {
     height: 25px;
@@ -94,8 +98,21 @@ canvas {
     left: 680px;
 }
 
-.endscreen {
+/* endscreen */
+
+.endscreenWon {
     display: cover;
     height: 100vh;
     width: 100%;
+}
+
+.endscreenLost {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: cover;
+    height: 50%;
+    width: 50%;
+    z-index: 1;
 }

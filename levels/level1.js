@@ -33,7 +33,8 @@ const level1 = new Level(enemies =
         new BackgroundObject(1, 720 * 2, 0),
         new BackgroundObject(2, 720 * 3, 0),
         new BackgroundObject(1, 720 * 4, 0),
-        new BackgroundObject(2, 720 * 5, 0)
+        new BackgroundObject(2, 720 * 5, 0),
+        new BackgroundObject(1, 720 * 6, 0)
     ],
 
     coins = [

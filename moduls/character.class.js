@@ -91,8 +91,10 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.RIGHT && this.gameEnd()) {
                 this.otherDirection = false;
-
                 this.swimRight();
+                if(this.x >= 3950) {
+                    this.world.youWon();
+                }
             }
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.otherDirection = true;

@@ -57,8 +57,16 @@ class World {
         }
     }
     youLost() {
-        document.getElementById('bg-img').classList.add('d-none');
+        document.getElementById('canvasFullscreen').classList.add('d-none');
         document.getElementById('id-gameLost').classList.remove('d-none');
+        setTimeout(() => {
+            location.reload();
+        }, 5000);
+    }
+
+    youWon() {
+        document.getElementById('bg-img').classList.add('d-none');
+        document.getElementById('id-gameWon').classList.remove('d-none');
         setTimeout(() => {
             location.reload();
         }, 5000);
