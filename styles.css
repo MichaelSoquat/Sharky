@@ -60,7 +60,7 @@ canvas {
     height: 100px;
     margin-top: 30px;
     margin-bottom: 30px;
-    
+
 }
 
 .size-description {
@@ -68,11 +68,26 @@ canvas {
     width: 80px;
     object-fit: contain;
     padding-left: 30px;
-    
+
 }
 
 .bg-img p {
     margin: 0;
     display: flex;
     justify-content: center;
+}
+
+#canvasFullscreen {
+    position: relative;
+}
+
+.style-fullscreen-img {
+    height: 25px;
+    width: 25px;
+    filter: invert(100);
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    bottom: 10px;
+    right: 40px;
 }

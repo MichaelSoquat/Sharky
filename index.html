@@ -41,9 +41,12 @@
 <!-- ONLOAD -->
 
 <body>
-    
+
     <div class="bg-img">
-        <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+        <div id="canvasFullscreen" class="d-none">
+            <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+            <img onclick="fullScreen()" class="style-fullscreen-img" src="./img/fullscreen.png">
+        </div>
         <div id="startGame">
             <h1>Sharky</h1>
             <img class="start-button" onclick="startGame(), init()" src="./img/6.Botones/Start/1.png">

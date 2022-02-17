@@ -22,8 +22,10 @@ function fullScreen() {
 // start game
 
 function startGame() {
+    let canvasFullscreen = document.getElementById('canvasFullscreen');
     canvas = document.getElementById('canvas');
     let startGame = document.getElementById('startGame');
+    canvasFullscreen.classList.remove('d-none')
     startGame.classList.add('d-none');
     canvas.classList.remove('d-none');
     // bg_sound.play();
