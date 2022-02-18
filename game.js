@@ -15,10 +15,14 @@ function init() {
 }
 
 function doMouseDown(event) {
-    canvas_x = event.pageX;
-    canvas_y = event.pageY;
-    canvas.requestFullscreen();
-
+    let rect = canvas.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    canvas_x = x;
+    canvas_y = y;
+    if (x >= 670 && y >= 430) {
+        canvas.requestFullscreen();
+    }
 }
 
 //responsive

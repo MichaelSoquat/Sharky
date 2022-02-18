@@ -3,7 +3,7 @@ class Fish extends MovableObject {
     energy = 2;
     intervalOfEnemies;
     y = 350;
-    x = 300 + Math.random() * 4000;
+    x = 500 + Math.random() * 4000;
     speed = 0.1 + Math.random() * 0.5;
 
     /**
