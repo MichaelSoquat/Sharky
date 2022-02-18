@@ -2,10 +2,12 @@ let canvas;
 let keyboard;
 let world;
 // let bg_sound = ;
+
 /**
  * This function is used to create the World
  * and give canvas and keyboard to world
  */
+
 function init() {
     canvas = document.getElementById('canvas');
     keyboard = new Keyboard;
@@ -14,13 +16,16 @@ function init() {
     canvas.addEventListener("mousedown", doMouseDown, false);
 }
 
+/**
+ * This function is to get fullscreen onclick the size button
+ * @param {string} event 
+ */
+
 function doMouseDown(event) {
     let rect = canvas.getBoundingClientRect();
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
-    canvas_x = x;
-    canvas_y = y;
-    if (x >= 670 && y >= 430) {
+    if (x >= canvas.clientWidth - 50 && y >= canvas.clientHeight - 50) {
         canvas.requestFullscreen();
     }
 }
@@ -31,9 +36,6 @@ function responsive() {
     var heightRatio = 0.65;
     canvas.height = canvas.width * heightRatio;
 }
-
-// full screen
-
 
 
 // start game
