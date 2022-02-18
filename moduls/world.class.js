@@ -48,6 +48,7 @@ class World {
     /**
      * This function is there to check lost Game
      */
+    
     checkLost() {
         if (this.gameLost == true) {
             this.stopInterval();
@@ -58,6 +59,8 @@ class World {
 
         }
     }
+
+    // show lost game endscreen and reload
     youLost() {
         document.getElementById('canvasFullscreen').classList.add('d-none');
         document.getElementById('id-gameLost').classList.remove('d-none');
@@ -66,9 +69,12 @@ class World {
         }, 5000);
     }
 
+    // show won game endscreen and reload
+
     youWon() {
         document.getElementById('bg-img').classList.add('d-none');
         document.getElementById('id-gameWon').classList.remove('d-none');
+        this.gameWon_audio.play();
         setTimeout(() => {
             location.reload();
         }, 5000);
@@ -197,7 +203,6 @@ class World {
                 this.character.hit();
                 if (this.character.energy > 0) {
                     this.character.energy -= 10;
-                    this.hurt_audio.play();
                 }
                 this.energybarCharacter.setPercentage(this.character.energy);
             };

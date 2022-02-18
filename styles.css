@@ -3,6 +3,7 @@ html {
     height: 100%;
     width: 100%;
 }
+
 body {
     margin: 0;
     display: flex;
@@ -88,7 +89,7 @@ canvas {
     position: relative;
     width: 720px;
     height: 480px;
-    
+
 }
 
 /* fullscreen-img */
@@ -105,12 +106,15 @@ canvas {
 }
 
 /* endscreen */
+.endscreen {
+    height: 100%;
+    width: 100%;
+}
 
 .endscreenWon {
-    display: cover;
-    height: 100vh;
+    object-fit: cover;
+    height: 100%;
     width: 100%;
-
 }
 
 .endscreenLost {
